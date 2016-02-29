@@ -3,32 +3,61 @@ using System.Collections;
 
 public class Zombie : MonoBehaviour {
 
-	private int speed;
+	public float speed;
 	private int health;
 	private int damage;
+	private float attackRate;
 	private BoxCollider body;
 	public Transform towerTransform;
 	public Building[] buildings;
+	public GameObject currentTarget;
+	public Vector3 currentPos;
+	private float t;
 
 	// Use this for initialization
 	void Start () {
+		t = 0;
+		attackRate = 3;
+		damage = 1;
 		health = 3;
 		body = gameObject.GetComponent<BoxCollider> ();
-		speed = 1;
 		buildings = FindObjectsOfType (typeof(Building)) as Building[];
-		Debug.Log (buildings.Length);
 		//towerTransform = GameObject.Find ("WatchTower").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		t += Time.deltaTime;
+		currentPos = transform.position;
 		if(towerTransform == null){ //check if it has a target
 			findClosestBuilding();
 		}
+	move ();
+
+	}
+
+
+
 		
-		float step = speed * Time.deltaTime; //move towards the closest buidling
-		transform.position = Vector3.MoveTowards (transform.position, towerTransform.position, step);
+	public void move(){
+		if (Vector3.Distance (currentPos, towerTransform.position) > 0.45f) {
+			float step = speed * Time.deltaTime; //move towards the closest buidling
+			transform.position = Vector3.MoveTowards (transform.position, towerTransform.position, step);
+		} else {
+			if (t > attackRate) {
+				attack ();
+				t = 0;
+			}
+		}
+
+	}
+
+	public void attack(){
+		Debug.Log ("ATTACKING");
+		if(currentTarget.GetComponent<Building>() != null){
+			Building b = currentTarget.GetComponent<Building> ();
+			b.loseHealth (damage);
+		}
 	}
 
 	/*
@@ -36,15 +65,18 @@ public class Zombie : MonoBehaviour {
 	 **/
 	public void findClosestBuilding(){
 		float minDistance = Mathf.Infinity;
-		Vector3 currentPos = transform.position;
+
 
 		foreach(Building b in buildings){ //iterate through all buildings to find the closest
-			Transform t = b.transform;
-			float dist = Vector3.Distance (currentPos, t.position);
+			if (b != null) {
+				Transform t = b.transform;
+				float dist = Vector3.Distance (currentPos, t.position);
 
-			if (dist < minDistance) { //set the closest building
-				minDistance = dist;
-				towerTransform = t;
+				if (dist < minDistance) { //set the closest building
+					minDistance = dist;
+					towerTransform = t;
+					currentTarget = b.gameObject;
+				}
 			}
 		}
 	}
@@ -53,7 +85,7 @@ public class Zombie : MonoBehaviour {
 		speed = newSpeed;
 	}
 
-	public int getSpeed(){
+	public float getSpeed(){
 		return speed;
 	}
 

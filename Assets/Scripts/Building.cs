@@ -10,12 +10,12 @@ public class Building : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void addOccupant(){
@@ -30,6 +30,9 @@ public class Building : MonoBehaviour {
 
 	public void loseHealth(int damage){
 		health -= damage;
+		if(health <= 0){
+			Destroy (gameObject);
+		}
 	}
 
 	public void addHealth(int aid){
