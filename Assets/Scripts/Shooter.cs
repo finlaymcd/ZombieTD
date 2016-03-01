@@ -10,8 +10,10 @@ public class Shooter : MonoBehaviour {
 	private Zombie target;
 	private Zombie[] zombies;
 	private Vector3 currentPos;
+	public double sightRange;
 
 	void Start () {
+		sightRange = 5.0;
 		shootTime = Random.Range (2, 5);
 	}
 	
@@ -33,16 +35,25 @@ public class Shooter : MonoBehaviour {
 				}
 			}
 
-			}
-
-		if (GameObject.Find("ZombiePrefab(Clone)")){ //if there is a zombie in scene
-			if(t >= shootTime){ //if a few seconds have passed
-				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
-			t = 0; //reset timer to 0
-				shootTime = Random.Range (2, 5); //set new random shoot time.
-			}
 		}
-		t += Time.deltaTime;
+
+		if (t >= shootTime) { //if a few seconds have passed
+			shoot ();
+		}
+
+		t += Time.deltaTime; //increment time
+	}
+
+
+
+	public void shoot(){
+		if (GameObject.Find("ZombiePrefab(Clone)")){ //if there is a zombie in scene
+			if((Vector3.Distance(currentPos, target.gameObject.transform.position)) <= sightRange){
+				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
+				t = 0; //reset timer to 0
+				shootTime = Random.Range (2, 5); //set new random shoot time.
+				}
+			}
 	}
 
 
