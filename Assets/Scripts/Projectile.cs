@@ -50,6 +50,7 @@ public class Projectile : MonoBehaviour {
 		if (col.gameObject.GetComponent<Zombie> () != null) {
 			Zombie zombie = col.gameObject.GetComponent<Zombie> ();
 			zombie.addHealth (damage);
+			Destroy (gameObject);
 		}
 	}
 
