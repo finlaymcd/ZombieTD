@@ -10,8 +10,5 @@ public class Base : Building {
 		health = maxHealth;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

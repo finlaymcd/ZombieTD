@@ -14,12 +14,12 @@ public class SpawnManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("space")) {
+		if (Input.GetKeyDown ("space")) { //when space is pressed
 			spawn ();
 		}
 	}
 
-	public void spawn(){
+	public void spawn(){ //spawn from one of the for spawner objects (these were passed to the SpawnManager in the editor by dragginf them in)
 		rand = Random.Range (0.0f, 80.0f);
 		if (rand < 20) {
 			spawnOne.spawn ();

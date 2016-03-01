@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class WatchTower : Building {
+						//^^^^^^^^
+
+	/*
+	 * Inherits from Building (see above). Sets variables to watchtowers.
+	 * */
 
 	// Use this for initialization
 	void Start () {

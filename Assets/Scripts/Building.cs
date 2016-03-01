@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Building : MonoBehaviour {
 
+	/*
+	 * This is the parent class that all buildings and structures will inherit from.
+	 * */
+
+
 	public int maxHealth;
 	public int health;
 	public int capacity;
@@ -18,24 +23,24 @@ public class Building : MonoBehaviour {
 		
 	}
 
-	public void addOccupant(){
+	public void addOccupant(){ //add a person in to the building
 		if(numberResidents < capacity){
 		numberResidents++;
 		}
 	}
 
-	public void removeOccupant(){
+	public void removeOccupant(){ //remove person from building
 		numberResidents--;
 	}
 
-	public void loseHealth(int damage){
+	public void loseHealth(int damage){ // remove building health
 		health -= damage;
 		if(health <= 0){
 			Destroy (gameObject);
 		}
 	}
 
-	public void addHealth(int aid){
+	public void addHealth(int aid){ //add building health
 		if(health < maxHealth){
 		health += aid;
 			if (health > maxHealth) {

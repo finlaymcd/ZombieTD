@@ -27,12 +27,12 @@ public class Spawner : MonoBehaviour {
 	}
 
 	public void spawn(){
-		if (onXaxis) {
-			Vector3 spawnPos = new Vector3 (transform.position.x, transform.position.y, Random.Range (-12.0f, -3.0f)); 
-			Instantiate (zomba, spawnPos, transform.rotation);
+		if (onXaxis) { //check if its on the x axis or the z axis.
+			Vector3 spawnPos = new Vector3 (transform.position.x, transform.position.y, Random.Range (-12.0f, -3.0f));  //spawn anywhere between those values, locked on the other two axes.
+			Instantiate (zomba, spawnPos, transform.rotation); //instantiate function takes the prefab, the position, and the rotation.
 		} 
 		else {
-			Vector3 spawnPos = new Vector3 (Random.Range (-6.0f, 2.5f), transform.position.y, transform.position.z); 
+			Vector3 spawnPos = new Vector3 (Random.Range (-6.0f, 2.5f), transform.position.y, transform.position.z);  //same again, but on the other axes.
 			Instantiate (zomba, spawnPos, transform.rotation);
 		}
 
