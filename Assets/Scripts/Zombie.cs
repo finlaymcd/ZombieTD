@@ -30,6 +30,7 @@ public class Zombie : MonoBehaviour {
 		t += Time.deltaTime; //time counter
 		currentPos = transform.position;
 		if(towerTransform == null){ //check if it has a target
+			outSight();
 			findClosestBuilding();
 		}
 	move ();
@@ -105,5 +106,15 @@ public class Zombie : MonoBehaviour {
 
 	public int getDamage(){
 		return damage;
+	}
+
+	public void inSight(){
+		MeshRenderer m = gameObject.GetComponent<MeshRenderer> ();
+		m.enabled = true;
+	}
+
+	public void outSight(){
+		MeshRenderer m = gameObject.GetComponent<MeshRenderer> ();
+		m.enabled = false;
 	}
 }
