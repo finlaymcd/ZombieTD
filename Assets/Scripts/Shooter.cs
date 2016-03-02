@@ -17,7 +17,7 @@ public class Shooter : MonoBehaviour {
 
 	void Start () {
 		sight = gameObject.GetComponentInChildren<Light> ();
-		shootTime = Random.Range (1, 2);
+		shootTime = Random.Range (1, 3);
 		setLight ();
 	}
 	
@@ -64,7 +64,7 @@ public class Shooter : MonoBehaviour {
 				target.inSight ();
 				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
 				t = 0; //reset timer to 0
-				shootTime = Random.Range (2, 4); //set new random shoot time.
+				shootTime = Random.Range (1, 3); //set new random shoot time.
 				}
 			}
 	}

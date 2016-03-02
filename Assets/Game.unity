@@ -217,7 +217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11440260, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
       propertyPath: sightRange
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
