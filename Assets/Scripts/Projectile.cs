@@ -44,7 +44,6 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){ //hit detection
-		Debug.Log ("Collide");
 		if (col.gameObject.GetComponent<Zombie> () != null) { //is it a zombie?
 			Zombie zombie = col.gameObject.GetComponent<Zombie> ();
 			zombie.addHealth (damage); //pass in the projectiles damage and take that health from the zombie

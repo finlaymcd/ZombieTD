@@ -70,34 +70,28 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void setLight(){
-		if(sightRange <= 1.0){
+		if (sightRange <= 1.0) {
 			sight.spotAngle = 40;
-		}
-		else if(sightRange <= 1.5){
+		} else if (sightRange <= 1.5) {
 			sight.spotAngle = 55;
-		}
-		else if (sightRange <= 2.0) {
+		} else if (sightRange <= 2.0) {
 			sight.spotAngle = 70;
-		}
-
-		else if (sightRange <= 2.5){
+		} else if (sightRange <= 2.5) {
 			sight.spotAngle = 85;
-		}
-		else if (sightRange <= 3.0) {
+		} else if (sightRange <= 3.0) {
 			sight.spotAngle = 100;
-		}
-		else if (sightRange <= 3.5){
+		} else if (sightRange <= 3.5) {
 			sight.spotAngle = 115;
-		}
-		else if (sightRange <= 4.0){
+		} else if (sightRange <= 4.0) {
 			sight.spotAngle = 130;
+		} else {
+			sight.spotAngle = 140;
 		}
 	}
 
 	public void scanForZombies(){ // if there are zombies near, checked every 1 second
 		zombies = FindObjectsOfType (typeof(Zombie)) as Zombie[];
 		foreach(Zombie z in zombies){
-			Debug.Log ("zombas: " + zombies.Length);
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
 				z.inSight ();
 			

@@ -41,13 +41,15 @@ public class Zombie : MonoBehaviour {
 
 		
 	public void move(){
-		if (Vector3.Distance (currentPos, towerTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
-			float step = speed * Time.deltaTime; //move towards the closest buidling
-			transform.position = Vector3.MoveTowards (transform.position, towerTransform.position, step); //apply movement
-		} else {
-			if (t > attackRate) {
-				attack ();
-				t = 0; //t is a timer, and gets reset to zero every time it attacks
+		if (towerTransform != null) {
+			if (Vector3.Distance (currentPos, towerTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+				float step = speed * Time.deltaTime; //move towards the closest buidling
+				transform.position = Vector3.MoveTowards (transform.position, towerTransform.position, step); //apply movement
+			} else {
+				if (t > attackRate) {
+					attack ();
+					t = 0; //t is a timer, and gets reset to zero every time it attacks
+				}
 			}
 		}
 
