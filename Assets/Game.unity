@@ -116,7 +116,7 @@ MonoBehaviour:
   spawnTwo: {fileID: 337704694}
   spawnThree: {fileID: 1659113005}
   spawnFour: {fileID: 2127667429}
-  spawnRate: 4
+  spawnRate: 2
 --- !u!4 &6234814
 Transform:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 499030, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.2502201
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 499030, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -391,7 +391,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499030, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.046550576
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 499030, guid: 071719a23f5e15f4989f0c75aa5e956d, type: 2}
       propertyPath: m_LocalRotation.x
