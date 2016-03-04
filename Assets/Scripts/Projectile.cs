@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
 		Vector3 relativePos = target.position - transform.position;  //Vector3 that points from projectile to target
 		Quaternion rotation = Quaternion.LookRotation (relativePos); //turn that vector 3 in to a look rotation.
 		transform.rotation = rotation; 	//set the projectiles rotation to the look at rotation 
-		rigid.AddRelativeForce(0,0,500); //apply the force in the direction it's facing
+		rigid.AddRelativeForce(0,0,750); //apply the force in the direction it's facing
 	}
 
 

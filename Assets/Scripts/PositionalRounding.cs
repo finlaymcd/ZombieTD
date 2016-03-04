@@ -11,28 +11,27 @@ public class PositionalRounding : MonoBehaviour {
 
 
 	public void rePosition(){
-		for (int i = 0; i < 3; i++) { //cheap fix. Sometimes doesn't work the first time, so just run it a couple more times.
+		//for (int i = 0; i < 3; i++) { //cheap fix. Sometimes doesn't work the first time, so just run it a couple more times.
 			float currentX = transform.position.x;
-			if (currentX < 0) {
-				currentX = currentX * -1;
-			}
-			float offSetX = (currentX % 0.25f); 
+			float offSetX = (currentX % 0.25f); //
 			if (offSetX >= 0.125) {
-				newX = transform.position.x - offSetX;
+				float x = 0.25f - offSetX;
+				newX = transform.position.x + x;
 			} else {
-				newX = transform.position.x + offSetX;
+				newX = transform.position.x - offSetX;
 			}
 
 
 			float currentZ = transform.position.z;
 			float offSetZ = (currentZ % 0.25f); 
 			if (offSetZ >= 0.125) {
-				newZ = transform.position.z - offSetZ;
+				float z = 0.25f - offSetZ;
+				newZ = transform.position.z + z;
 			} else {
 				newZ = transform.position.z - offSetZ;
 			}
 
 			transform.position = new Vector3 (newX, transform.position.y, newZ);
-		}
+		//}
 	}
 }
