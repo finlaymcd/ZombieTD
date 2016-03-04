@@ -16,7 +16,6 @@ public class Selector : MonoBehaviour {
 		if (Input.GetMouseButton (0)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
-				print (hit.point);
 				castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
 				if (hit.collider.gameObject.GetComponent<PositionalRounding> () != null) {
 					tower = hit.collider.gameObject.GetComponent<PositionalRounding> ();

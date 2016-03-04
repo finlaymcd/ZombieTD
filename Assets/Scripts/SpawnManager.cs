@@ -9,14 +9,19 @@ public class SpawnManager : MonoBehaviour {
 	public Spawner spawnThree;
 	public Spawner spawnFour;
 	private float rand;
+	public float spawnRate;
+	private float t;
 	// Use this for initialization
 
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("space")) { //when space is pressed
+		if (t > spawnRate) {
 			spawn ();
+			t = 0;
 		}
+			
+		t += Time.deltaTime;
 	}
 
 	public void spawn(){ //spawn from one of the for spawner objects (these were passed to the SpawnManager in the editor by dragginf them in)

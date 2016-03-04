@@ -13,6 +13,8 @@ public class Zombie : MonoBehaviour {
 	public GameObject currentTarget; //gameobject of current target (this is of GameObject class and not Building class because I potentially want to include humans as a possible target)
 	public Vector3 currentPos; //currentPosition
 	private float t; //variable that stores time.
+	public MeshRenderer m;
+
 
 	// Use this for initialization
 	void Start () {
@@ -111,12 +113,12 @@ public class Zombie : MonoBehaviour {
 	}
 
 	public void inSight(){
-		MeshRenderer m = gameObject.GetComponent<MeshRenderer> ();
+		m = gameObject.GetComponent<MeshRenderer> ();
 		m.enabled = true;
 	}
 
 	public void outSight(){
-		MeshRenderer m = gameObject.GetComponent<MeshRenderer> ();
+		m = gameObject.GetComponent<MeshRenderer> ();
 		m.enabled = false;
 	}
 }

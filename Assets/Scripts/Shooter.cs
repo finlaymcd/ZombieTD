@@ -39,7 +39,6 @@ public class Shooter : MonoBehaviour {
 					}
 				}
 			}
-
 		}
 
 		if (t >= shootTime) { //if a few seconds have passed
@@ -94,7 +93,9 @@ public class Shooter : MonoBehaviour {
 		foreach(Zombie z in zombies){
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
 				z.inSight ();
-			
+				if (target.m.enabled != true) {
+					target = z;
+				}
 			}
 		}
 

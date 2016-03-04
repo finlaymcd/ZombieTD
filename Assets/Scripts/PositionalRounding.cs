@@ -7,9 +7,7 @@ public class PositionalRounding : MonoBehaviour {
 	private float newZ;
 
 	// Use this for initialization
-	void Start () {
-		rePosition ();
-	}
+
 
 
 	public void rePosition(){
