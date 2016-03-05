@@ -26,14 +26,13 @@ public class Base : Building {
 	}
 
 	void Update(){
-		Debug.Log (lerpTime);
 		if (timing) {
 			clickTime += Time.deltaTime;
 		}
 		if (lerping) {
 			Vector2 size = Vector2.Lerp (currentVector, targetVector, lerpTime);
 			r.sizeDelta = size;
-			lerpTime += Time.deltaTime;
+			lerpTime += Time.deltaTime * 2;
 		}
 
 		if (lerpTime >= 1.0f) {
