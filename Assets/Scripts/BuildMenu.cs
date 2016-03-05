@@ -8,7 +8,7 @@ public class BuildMenu : MonoBehaviour {
 	//public GameObject can;
 	public Building phresh;
 	public Image baseMenu;
-	public Canvas canvas;
+	public GameManager man;
 
 
 	
@@ -16,13 +16,19 @@ public class BuildMenu : MonoBehaviour {
 
 	public void build(Building b){
 		phresh = Instantiate (b);
-		phresh.GetComponent<PositionalRounding> ().rePosition();
-		canvas.enabled = false;
+		if (phresh.woodCost > man.gotWood()) {
+			Destroy (phresh.gameObject);
+		} else {
+			phresh.GetComponent<PositionalRounding> ().rePosition ();
+			man.removeWood (phresh.woodCost);
+			gameObject.SetActive (false);
+
+		}
 	
 	}
 
-	public void setCanvasActive(){
-		canvas.enabled = true;
+	public void setMenuActive(){
+		gameObject.SetActive (true);
 	}
 
 

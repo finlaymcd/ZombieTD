@@ -352,6 +352,7 @@ MonoBehaviour:
   capacity: 0
   numberResidents: 0
   canEdit: 1
+  woodCost: 10
 --- !u!114 &11471426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,6 +558,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: canEdit
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: woodCost
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

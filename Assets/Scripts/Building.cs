@@ -14,6 +14,7 @@ public class Building : MonoBehaviour {
 	public int capacity;
 	public int numberResidents;
 	public bool canEdit;
+	public int woodCost;
 
 	// Use this for initialization
 	void Start () {
