@@ -7,6 +7,7 @@ public class Selector : MonoBehaviour {
 	private Vector3 castPos;
 	public RaycastHit hit;
 	private float clickTime;
+
 	// Use this for initialization
 	void Start () {
 		clickTime = 0;
@@ -17,14 +18,16 @@ public class Selector : MonoBehaviour {
 		if (Input.GetMouseButton (0)) {
 			clickTime += Time.deltaTime;
 		}
-		if (clickTime > 0.18) {
+		if ((clickTime > 0.18)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
 				castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
 				if (hit.collider.gameObject.GetComponent<PositionalRounding> () != null) {
+					if(hit.collider.gameObject.GetComponent<Building>().canEdit){
 					tower = hit.collider.gameObject.GetComponent<PositionalRounding> ();
 					//tower.rePosition (castPos);
 					tower.transform.position = castPos;
+					}
 				}
 
 			

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class Building : MonoBehaviour {
 	public int health;
 	public int capacity;
 	public int numberResidents;
+	public bool canEdit;
 
 	// Use this for initialization
 	void Start () {
@@ -47,5 +49,17 @@ public class Building : MonoBehaviour {
 				health = maxHealth;
 			}
 		}
+	}
+
+	public void setEditable(){
+		Button b = gameObject.GetComponentInChildren<Button> ();
+		b.gameObject.SetActive (false);
+		canEdit = true;
+	}
+
+	public void setUnEditable(){
+		Button b = gameObject.GetComponentInChildren<Button> ();
+		b.gameObject.SetActive (false);
+		canEdit = false;
 	}
 }

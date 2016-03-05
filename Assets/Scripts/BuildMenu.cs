@@ -7,6 +7,7 @@ public class BuildMenu : MonoBehaviour {
 
 	//public GameObject can;
 	public Building phresh;
+	public Image baseMenu;
 	public Canvas canvas;
 
 
@@ -15,8 +16,7 @@ public class BuildMenu : MonoBehaviour {
 
 	public void build(Building b){
 		phresh = Instantiate (b);
-		//phresh.transform.position = new Vector3 ();
-
+		phresh.GetComponent<PositionalRounding> ().rePosition();
 		canvas.enabled = false;
 	
 	}
