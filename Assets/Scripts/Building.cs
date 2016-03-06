@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Building : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class Building : MonoBehaviour {
 	public int numberResidents;
 	public bool canEdit;
 	public int woodCost;
+	public List<Shooter> shooters;
+	public float height;
 
 	// Use this for initialization
 	void Start () {
@@ -26,13 +29,23 @@ public class Building : MonoBehaviour {
 		
 	}
 
-	public void addOccupant(){ //add a person in to the building
+	public void addOccupant(Shooter s){ //add a person in to the building
 		if(numberResidents < capacity){
-		numberResidents++;
+			shooters.Add (s);
+			s.gameObject.transform.position = new Vector3 (transform.position.x, height, transform.position.z);
+			s.sightRange = s.sightRange * 2;
+			s.setLight ();
+			numberResidents++;
 		}
 	}
 
-	public void removeOccupant(){ //remove person from building
+	public void removeOccupant(Shooter s){ //remove person from building
+		foreach (Shooter shoot in shooters) {
+			if (shoot == s) {
+				shooters.Remove (shoot);
+				s.sightRange = s.sightRange / 2;
+			}
+		}
 		numberResidents--;
 	}
 
@@ -53,14 +66,18 @@ public class Building : MonoBehaviour {
 	}
 
 	public void setEditable(){
+		gameObject.tag = "Draggable";
 		Button b = gameObject.GetComponentInChildren<Button> ();
 		b.gameObject.SetActive (false);
 		canEdit = true;
 	}
 
 	public void setUnEditable(){
+		gameObject.tag = "Untagged";
 		Button b = gameObject.GetComponentInChildren<Button> ();
 		b.gameObject.SetActive (false);
 		canEdit = false;
 	}
+
+
 }

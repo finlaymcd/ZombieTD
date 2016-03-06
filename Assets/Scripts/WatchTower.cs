@@ -15,6 +15,7 @@ public class WatchTower : Building {
 		maxHealth = 8;
 		health = maxHealth;
 		capacity = 3;
+		height = 11.75f;
 
 	}
 	

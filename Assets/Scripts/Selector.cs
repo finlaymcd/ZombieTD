@@ -3,45 +3,129 @@ using System.Collections;
 
 public class Selector : MonoBehaviour {
 
-	private PositionalRounding tower;
+	private GameObject dragObject;
 	private Vector3 castPos;
 	public RaycastHit hit;
 	private float clickTime;
-
+	private bool selecting;
 
 	// Use this for initialization
 	void Start () {
 		clickTime = 0;
+		selecting = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log(dragObject);
 		if (Input.GetMouseButton (0)) {
 			clickTime += Time.deltaTime;
-			if (tower != null) {
-				tower.transform.position = castPos;
+			if (dragObject == null) {
+				setDraggable ();
+			}
+			if (dragObject != null && dragObject.gameObject.tag == "Draggable" && clickTime > 0.4f) {
+				drag ();
 			}
 		}
-		if ((clickTime > 0.1)) {
+
+		if (Input.GetMouseButtonUp (0)) {
+			finishDrag ();
+		}
+
+
+
+
+	}
+
+	public void drag(){
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hit)) {
+			Debug.Log ("hit: " + hit.collider.gameObject.name);
+			castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
+			dragObject.transform.position = castPos;
+		}
+	}
+
+	public void setDraggable(){
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hit)) {
+			dragObject = hit.collider.gameObject;
+
+
+
+		}
+	}
+
+	public void finishDrag(){
+		if (dragObject != null) {
+			if (dragObject.GetComponent<Building> () != null) {
+				PositionalRounding p = dragObject.GetComponent<PositionalRounding> ();
+				p.rePosition ();
+			}
+
+			if (dragObject.GetComponent<Shooter> () != null) {
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				if (Physics.Raycast (ray, out hit)) {
+					if (hit.collider.gameObject.GetComponent<Building> ()) {
+						Building b = hit.collider.gameObject.GetComponent<Building> ();
+						b.addOccupant (dragObject.GetComponent<Shooter> ());
+					}
+				}
+			}
+		}
+		dragObject = null;
+		clickTime = 0;
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+				/**
+
+			if (dragObject != null) {
+				dragObject.transform.position = castPos;
+			}
+		}
+		if ((clickTime > 0.05)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
 				castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
 				if (hit.collider.gameObject.GetComponent<PositionalRounding> () != null) {
 					if(hit.collider.gameObject.GetComponent<Building>().canEdit){
 				
-							tower = hit.collider.gameObject.GetComponent<PositionalRounding> ();
+						dragObject = hit.collider.gameObject;
 					}
+				}
+
+				else if (hit.collider.gameObject.GetComponent<Shooter> () != null) {
+					dragObject = hit.collider.gameObject;
 				}
 			}
 	}
 		if(Input.GetMouseButtonUp(0)){
 			clickTime = 0;
-			if(tower != null){
-			tower.rePosition ();
+			if(dragObject != null && dragObject.GetComponent<PositionalRounding> () != null){
+				PositionalRounding d = dragObject.GetComponent<PositionalRounding>();
+				d.rePosition ();
 			}
-			tower = null;
-		}
-	}
-
-}
+			if (dragObject.GetComponent<Shooter> () != null) {
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				if (Physics.Raycast (ray, out hit)) {
+					if (hit.collider.gameObject.GetComponent<Building> ()) {
+						Building b = hit.collider.gameObject.GetComponent<Building> ();
+						b.addOccupant (dragObject.GetComponent<Shooter>());
+					}
+				}
+			}
+			dragObject = null;
+			**/
 

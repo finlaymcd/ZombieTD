@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
 	private Transform target; //target zombie
 	private int damage;
 	private float lifetime; 
-
+	private float height;
 
 
 	void Start () {

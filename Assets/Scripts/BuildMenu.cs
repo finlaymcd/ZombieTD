@@ -9,10 +9,15 @@ public class BuildMenu : MonoBehaviour {
 	public Building phresh;
 	public Image baseMenu;
 	public GameManager man;
-
+	private Button [] buttons;
 
 	
 
+
+	void Start(){
+		buttons = gameObject.GetComponentsInChildren<Button> ();
+		Debug.Log (buttons.Length);
+	}
 
 	public void build(Building b){
 		phresh = Instantiate (b);
@@ -21,14 +26,28 @@ public class BuildMenu : MonoBehaviour {
 		} else {
 			phresh.GetComponent<PositionalRounding> ().rePosition ();
 			man.removeWood (phresh.woodCost);
-			gameObject.SetActive (false);
+			closeMenu ();
 
 		}
 	
 	}
 
+	public void closeMenu(){
+		gameObject.SetActive (false);
+	}
+
 	public void setMenuActive(){
 		gameObject.SetActive (true);
+		foreach(Button b in buttons){
+			string s = b.gameObject.name;
+			if (s == "Tower") {
+				if (man.gotWood () < 10) {
+					b.interactable = false;
+					//Image i = b.gameObject.GetComponent<Image> ();
+					//i.canvasRenderer.SetAlpha (0.1f);
+				}
+			}
+		}
 	}
 
 

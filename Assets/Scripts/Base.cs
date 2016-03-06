@@ -16,6 +16,7 @@ public class Base : Building {
 
 	// Use this for initialization
 	void Start () {
+		height = 12.0f;
 		lerping = false;
 		r = menu.GetComponent<RectTransform> ();
 		menuOut = false;
@@ -23,6 +24,8 @@ public class Base : Building {
 		maxHealth = 15;
 		capacity = 5;
 		health = maxHealth;
+		PositionalRounding p = gameObject.GetComponent<PositionalRounding> ();
+		p.rePosition ();
 	}
 
 	void Update(){
