@@ -17,8 +17,14 @@ public class Shooter : MonoBehaviour {
 	public bool inBuilding;
 	public Building occupiedBuilding;
 	public int health;
+	private Vector3 startPos;
+	private Transform resourceTransform;
+	private int moveSpeed;
+	private bool moving;
+	public Transform trans;
 
 	void Start () {
+		moveSpeed = 2;
 		sight = gameObject.GetComponentInChildren<Light> ();
 		shootTime = 1;
 		setLight ();
@@ -26,7 +32,11 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if(moving){
+			moveToward (resourceTransform);
+		}
+
 		if(target == null){
 			currentPos = transform.position;
 			float minDistance = Mathf.Infinity;
@@ -44,7 +54,7 @@ public class Shooter : MonoBehaviour {
 			}
 		}
 
-		if (t >= shootTime) { //if a few seconds have passed
+		if (t >= shootTime && moving == false) { //if a few seconds have passed
 			shoot ();
 		}
 
@@ -115,6 +125,30 @@ public class Shooter : MonoBehaviour {
 		}
 	}
 
+	public void setCurrentPos(){
+		startPos = transform.position;
+	}
 
+	public void moveToward(Transform r){
+
+		if (moving == false) {
+			transform.position = startPos;
+			resourceTransform = r;
+		
+			}
+
+		moving = true;
+
+		if (Vector3.Distance (currentPos, resourceTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
+		
+
+			transform.position = Vector3.MoveTowards (transform.position, resourceTransform.position, step);
+
+		} 
+		else {
+			moving = false;
+		}
+	}
 
 }

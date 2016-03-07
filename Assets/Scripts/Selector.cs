@@ -52,6 +52,7 @@ public class Selector : MonoBehaviour {
 			dragObject = hit.collider.gameObject;
 			if (dragObject.GetComponent<Shooter> () != null) {
 				Shooter shoot = dragObject.GetComponent<Shooter> ();
+				shoot.setCurrentPos ();
 				if (shoot.inBuilding = true  && shoot.occupiedBuilding != null) {
 					shoot.occupiedBuilding.removeOccupant (shoot);
 				}
@@ -70,11 +71,16 @@ public class Selector : MonoBehaviour {
 			}
 
 			if (dragObject.GetComponent<Shooter> () != null) {
+				Shooter shooter = dragObject.GetComponent<Shooter> ();
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				if (Physics.Raycast (ray, out hit)) {
 					if (hit.collider.gameObject.GetComponent<Building> ()) {
 						Building b = hit.collider.gameObject.GetComponent<Building> ();
 						b.addOccupant (dragObject.GetComponent<Shooter> ());
+					}
+					if (hit.collider.gameObject.tag == "Resource") {
+						Resource r = hit.collider.GetComponentInParent<Resource>();
+						shooter.moveToward (r.transform);
 					}
 				}
 			}
