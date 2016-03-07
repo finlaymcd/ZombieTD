@@ -8,8 +8,9 @@ public class Zombie : MonoBehaviour {
 	private int damage;
 	private float attackRate; //seconds between each attack
 	private BoxCollider body; //detects projectile hits
-	public Transform towerTransform; //transform of current target
+	public Transform targetTransform; //transform of current target
 	public Building[] buildings; //array of all Building classes and subclasses in the scene
+	public Shooter [] shooters;
 	public GameObject currentTarget; //gameobject of current target (this is of GameObject class and not Building class because I potentially want to include humans as a possible target)
 	public Vector3 currentPos; //currentPosition
 	private float t; //variable that stores time.
@@ -24,16 +25,17 @@ public class Zombie : MonoBehaviour {
 		health = 3;
 		body = gameObject.GetComponent<BoxCollider> ();
 		buildings = FindObjectsOfType (typeof(Building)) as Building[]; //finds all objects of class Building and puts them in an array called buildings
-		//towerTransform = GameObject.Find ("WatchTower").transform;
+		shooters = FindObjectsOfType(typeof(Shooter)) as Shooter[];
+		//targetTransform = GameObject.Find ("WatchTower").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		t += Time.deltaTime; //time counter
 		currentPos = transform.position;
-		if(towerTransform == null){ //check if it has a target
+		if(targetTransform == null){ //check if it has a target
 			outSight();
-			findClosestBuilding();
+			findClosestTarget();
 		}
 	move ();
 
@@ -43,10 +45,10 @@ public class Zombie : MonoBehaviour {
 
 		
 	public void move(){
-		if (towerTransform != null) {
-			if (Vector3.Distance (currentPos, towerTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+		if (targetTransform != null) {
+			if (Vector3.Distance (currentPos, targetTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 				float step = speed * Time.deltaTime; //move towards the closest buidling
-				transform.position = Vector3.MoveTowards (transform.position, towerTransform.position, step); //apply movement
+				transform.position = Vector3.MoveTowards (transform.position, targetTransform.position, step); //apply movement
 			} else {
 				if (t > attackRate) {
 					attack ();
@@ -62,12 +64,16 @@ public class Zombie : MonoBehaviour {
 			Building b = currentTarget.GetComponent<Building> (); //save building as variable
 			b.loseHealth (damage); //cause that building to lose health
 		}
+		if(currentTarget.GetComponent<Shooter>() != null){ //if it has a target
+			Shooter s = currentTarget.GetComponent<Shooter> (); //save building as variable
+			s.removeHealth (damage); //cause that building to lose health
+		}
 	}
 
 	/*
 	 * Finds and sets the closest building for the zombie to attack
 	 **/
-	public void findClosestBuilding(){
+	public void findClosestTarget(){
 		float minDistance = Mathf.Infinity; //minDistance is initially infinite
 
 
@@ -78,8 +84,21 @@ public class Zombie : MonoBehaviour {
 
 				if (dist < minDistance) { //set the closest building
 					minDistance = dist; //if it's closer than the current mindistance, it becomes the new mindistance and the new target
-					towerTransform = t;
+					targetTransform = t;
 					currentTarget = b.gameObject;
+				}
+			}
+		}
+
+		foreach(Shooter s in shooters){ //iterate through all buildings to find the closest
+			if (s != null) {
+				Transform t = s.transform;
+				float dist = Vector3.Distance (currentPos, t.position); //find distance between zombie and current selected building
+
+				if (dist < minDistance) { //set the closest building
+					minDistance = dist; //if it's closer than the current mindistance, it becomes the new mindistance and the new target
+					targetTransform = t;
+					currentTarget = s.gameObject;
 				}
 			}
 		}

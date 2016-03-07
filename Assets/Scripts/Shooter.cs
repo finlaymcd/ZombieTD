@@ -16,6 +16,7 @@ public class Shooter : MonoBehaviour {
 	private float searchTimer;
 	public bool inBuilding;
 	public Building occupiedBuilding;
+	public int health;
 
 	void Start () {
 		sight = gameObject.GetComponentInChildren<Light> ();
@@ -102,7 +103,17 @@ public class Shooter : MonoBehaviour {
 		}
 
 	}
-		
+
+	public void addHealth(int h){
+		health += h;
+	}
+
+	public void removeHealth(int h){
+		health -= h;
+		if(health <= 0){
+			Destroy (gameObject);
+		}
+	}
 
 
 

@@ -52,7 +52,7 @@ public class Selector : MonoBehaviour {
 			dragObject = hit.collider.gameObject;
 			if (dragObject.GetComponent<Shooter> () != null) {
 				Shooter shoot = dragObject.GetComponent<Shooter> ();
-				if (shoot.inBuilding = true) {
+				if (shoot.inBuilding = true  && shoot.occupiedBuilding != null) {
 					shoot.occupiedBuilding.removeOccupant (shoot);
 				}
 			}

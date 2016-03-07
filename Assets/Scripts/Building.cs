@@ -43,16 +43,20 @@ public class Building : MonoBehaviour {
 	}
 
 	public void removeOccupant(Shooter s){ //remove person from building
+		numberResidents--;
 		foreach (Shooter shoot in shooters) {
 			if (shoot == s) {
+				
+				s.transform.parent = null;
 				s.occupiedBuilding = null;
 				s.inBuilding = false;
 				shooters.Remove (shoot);
 				s.sightRange = s.sightRange / 2;
 				s.setLight ();
+				break;
 			}
 		}
-		numberResidents--;
+
 	}
 
 	public void loseHealth(int damage){ // remove building health
