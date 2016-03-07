@@ -33,6 +33,7 @@ public class Building : MonoBehaviour {
 		if(numberResidents < capacity){
 			shooters.Add (s);
 			s.gameObject.transform.position = new Vector3 (transform.position.x, height, transform.position.z);
+			s.transform.parent = gameObject.transform;
 			s.sightRange = s.sightRange * 2;
 			s.setLight ();
 			numberResidents++;
