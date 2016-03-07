@@ -14,6 +14,8 @@ public class Shooter : MonoBehaviour {
 	public Light sight;
 	private bool zombiesNear = false;
 	private float searchTimer;
+	public bool inBuilding;
+	public Building occupiedBuilding;
 
 	void Start () {
 		sight = gameObject.GetComponentInChildren<Light> ();
@@ -100,6 +102,7 @@ public class Shooter : MonoBehaviour {
 		}
 
 	}
+		
 
 
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -36,6 +36,8 @@ public class Building : MonoBehaviour {
 			s.transform.parent = gameObject.transform;
 			s.sightRange = s.sightRange * 2;
 			s.setLight ();
+			s.occupiedBuilding = this;
+			s.inBuilding = true;
 			numberResidents++;
 		}
 	}
@@ -43,8 +45,11 @@ public class Building : MonoBehaviour {
 	public void removeOccupant(Shooter s){ //remove person from building
 		foreach (Shooter shoot in shooters) {
 			if (shoot == s) {
+				s.occupiedBuilding = null;
+				s.inBuilding = false;
 				shooters.Remove (shoot);
 				s.sightRange = s.sightRange / 2;
+				s.setLight ();
 			}
 		}
 		numberResidents--;
