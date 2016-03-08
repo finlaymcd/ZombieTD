@@ -18,12 +18,20 @@ public class Shooter : MonoBehaviour {
 	public Building occupiedBuilding;
 	public int health;
 	private Vector3 startPos;
-	private Transform resourceTransform;
+	private Resource targetResource;
 	private int moveSpeed;
 	private bool moving;
 	public Transform trans;
+	bool gathering;
+	bool movingToResource;
+	bool movingFromResource;
+	private int gatherSpeed;
+	private int resourceHeld;
+	private int resourceCapacity;
 
 	void Start () {
+		resourceCapacity = 3;
+		gatherSpeed = 1;
 		moveSpeed = 2;
 		sight = gameObject.GetComponentInChildren<Light> ();
 		shootTime = 1;
@@ -34,8 +42,9 @@ public class Shooter : MonoBehaviour {
 	void Update () {
 
 		if(moving){
-			moveToward (resourceTransform);
+			moveToward (targetResource);
 		}
+
 
 		if(target == null){
 			currentPos = transform.position;
@@ -129,25 +138,58 @@ public class Shooter : MonoBehaviour {
 		startPos = transform.position;
 	}
 
-	public void moveToward(Transform r){
+	public void gatheringResource(){
+		if (resourceHeld < resourceCapacity) {
+			targetResource.removeResource (gatherSpeed);
+		} else {
+			gathering = false;
+		}
+	}
+
+	public void moveToward(){
 
 		if (moving == false) {
 			transform.position = startPos;
-			resourceTransform = r;
-		
 			}
 
 		moving = true;
 
-		if (Vector3.Distance (currentPos, resourceTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+		if (Vector3.Distance (transform.position, targetResource.transform.position) > 0.2f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
+			Debug.Log("movin");
 		
 
-			transform.position = Vector3.MoveTowards (transform.position, resourceTransform.position, step);
+			transform.position = Vector3.MoveTowards (transform.position, targetResource.transform.position, step);
 
 		} 
 		else {
 			moving = false;
+			movingToResource = false;
+			gathering = true;
+			movingFromResource = false;
+			collectResource;
+		}
+	}
+
+	public void collectResource(Resource r){
+		targetResource = r;
+		gathering = false;
+		movingToResource = false;
+		movingFromResource = false;
+		bool initiate = true;
+		if (initiate) {
+			gathering = false;
+			movingToResource = true;
+			movingFromResource = false;
+		}
+		if(movingToResource){
+				InvokeRepeating ("gatheringResource", 0.5, 1);
+		}
+		if (movingFromResource) {
+
+		}
+		if(gathering){
+			gatheringResource ();
 		}
 	}
 
