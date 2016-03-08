@@ -17,7 +17,6 @@ public class Selector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(dragObject);
 		if (Input.GetMouseButton (0)) {
 			clickTime += Time.deltaTime;
 			if (dragObject == null) {

@@ -4,16 +4,30 @@ using System.Collections;
 public class Resource : MonoBehaviour {
 
 
-	private int amountContained = 5;
+	public int amountContained = 5;
 	private string resourceType;
 
 
 
 
-	public void removeResource(int a){
-		amountContained -= a;
-		if(amountContained < 0){
-			Destroy (gameObject);
+	public void removeResource(int a, Shooter s){
+
+		if (a > amountContained) {
+			a = amountContained;
 		}
+		amountContained -= a;
+		s.addResource (a);
+		//return b;
+		if(amountContained <= 0){
+			if(gameObject != null){
+			Destroy (gameObject);
+			}
+		}
+
 	}
+
+
+
+
+
 }

@@ -26,9 +26,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void removeWood(int w){
-		Debug.Log ("remove wood called");
-		Debug.Log ("w = " + w);
-		Debug.Log ("wood = " + wood);
+
 		wood = wood - w;
 
 		setWoodText();
@@ -38,7 +36,5 @@ public class GameManager : MonoBehaviour {
 		woodText.text = "wood: " + wood;
 	}
 
-	void Update(){
-		Debug.Log (wood);
-	}
+
 }

@@ -309,6 +309,10 @@ Prefab:
       propertyPath: m_TagString
       value: Draggable
       objectReference: {fileID: 0}
+    - target: {fileID: 11449472, guid: 38c638531c14f5d42891f411eb9d2e1c, type: 2}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38c638531c14f5d42891f411eb9d2e1c, type: 2}
   m_IsPrefabParent: 0
@@ -644,7 +648,7 @@ GameObject:
   - 4: {fileID: 362385830}
   - 114: {fileID: 362385829}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e8218f3e5d874459fd4e6ff99d00e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountContained: 5
 --- !u!4 &362385830
 Transform:
   m_ObjectHideFlags: 0
