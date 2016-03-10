@@ -11,7 +11,7 @@ public class Resource : MonoBehaviour {
 
 
 	public void removeResource(int a, Shooter s){
-
+		Debug.Log ("a = " + a);
 		if (a > amountContained) {
 			a = amountContained;
 		}

@@ -41,7 +41,7 @@ public class BuildMenu : MonoBehaviour {
 		foreach(Button b in buttons){
 			string s = b.gameObject.name;
 			if (s == "Tower") {
-				if (man.gotWood () < 10) {
+				if (man.gotWood () <= 10) {
 					b.interactable = false;
 					//Image i = b.gameObject.GetComponent<Image> ();
 					//i.canvasRenderer.SetAlpha (0.1f);

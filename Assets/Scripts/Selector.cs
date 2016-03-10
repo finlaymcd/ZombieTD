@@ -39,7 +39,6 @@ public class Selector : MonoBehaviour {
 	public void drag(){
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		if (Physics.Raycast (ray, out hit)) {
-			Debug.Log ("hit: " + hit.collider.gameObject.name);
 			castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
 			dragObject.transform.position = castPos;
 		}

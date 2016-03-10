@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Start(){
-		wood = 10;
+		wood = 5;
 		setWoodText();
 	}
 

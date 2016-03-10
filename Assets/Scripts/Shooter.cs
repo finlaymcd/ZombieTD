@@ -45,7 +45,7 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("RESOURCE HELD" + resourceHeld);
+
 		if (movingToResource) {
 			if (moving) {
 				moveToward ();
@@ -92,7 +92,9 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void addResource(int i){
+		Debug.Log ("i = " + i);
 		resourceHeld += i;
+
 	}
 
 	public void shoot(){
@@ -160,6 +162,7 @@ public class Shooter : MonoBehaviour {
 	public void gatheringResource(){
 		if (gatherTimer >= 1.0f) {
 			if (resourceHeld < resourceCapacity && targetResource != null) {
+				Debug.Log ("past checks");
 				targetResource.removeResource (gatherSpeed, this);
 				gatherTimer = 0;
 				//resourceHeld += resourceCapacity; 
@@ -167,7 +170,7 @@ public class Shooter : MonoBehaviour {
 			} else {
 				gathering = false;
 				movingFromResource = true;
-				gatherSpeed = 0;
+				gatherTimer = 0;
 			}
 		}
 		gatherTimer += Time.deltaTime;
@@ -177,7 +180,7 @@ public class Shooter : MonoBehaviour {
 
 
 	public void moveToward(){
-		Debug.Log ("moveToward");
+
 		if (moving == false) {
 			transform.position = startPos;
 			}
@@ -186,7 +189,7 @@ public class Shooter : MonoBehaviour {
 
 		if (Vector3.Distance (transform.position, targetResource.transform.position) > 0.2f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
-			Debug.Log("movin");
+
 		
 
 			transform.position = Vector3.MoveTowards (transform.position, targetResource.transform.position, step);
@@ -203,11 +206,10 @@ public class Shooter : MonoBehaviour {
 
 
 	public void backToBase(){
-		Debug.Log ("back to base");
+
 		if (Vector3.Distance (transform.position, bas.transform.position) > 0.5f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
 			transform.position = Vector3.MoveTowards (transform.position, bas.transform.position, step);
-			Debug.Log ("movin");
 		} else {
 			man.addWood (resourceHeld);
 			resourceHeld = 0;
@@ -218,7 +220,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void collectResource(Resource r){
-		Debug.Log ("collect resource");
+
 		if (r != null) {
 			targetResource = r;
 			gathering = false;
