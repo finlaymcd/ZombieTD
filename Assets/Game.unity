@@ -629,6 +629,10 @@ MonoBehaviour:
   Top: 0
   Bottom: 0
   zSpawn: 0
+  zTop: 0
+  zBottom: 0
+  xTop: 0
+  xBottom: 0
   onXaxis: 0
   zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
 --- !u!4 &337704695
@@ -638,7 +642,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 337704693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16148198, y: 0.43888837, z: -5.601572}
+  m_LocalPosition: {x: -0.19, y: 0.43888837, z: -5.6}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1799800352}
@@ -766,6 +770,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   woodText: {fileID: 1907029204}
+  s1: {fileID: 1025018511}
+  s2: {fileID: 337704694}
+  s3: {fileID: 1659113005}
+  s4: {fileID: 2127667429}
+  spawners: []
 --- !u!4 &573712681
 Transform:
   m_ObjectHideFlags: 0
@@ -1187,7 +1196,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025018509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 0.43888837, z: 5.82}
+  m_LocalPosition: {x: 0.34, y: 0.43888837, z: 5.82}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1799800352}
@@ -1206,6 +1215,10 @@ MonoBehaviour:
   Top: 0
   Bottom: 0
   zSpawn: 0
+  zTop: 0
+  zBottom: 0
+  xTop: 0
+  xBottom: 0
   onXaxis: 0
   zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
 --- !u!1001 &1043440456
@@ -1479,6 +1492,10 @@ MonoBehaviour:
   Top: 0
   Bottom: 0
   zSpawn: 0
+  zTop: 0
+  zBottom: 0
+  xTop: 0
+  xBottom: 0
   onXaxis: 1
   zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
 --- !u!4 &1659113006
@@ -1488,7 +1505,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1659113004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.28, y: 0.43888837, z: 0.01}
+  m_LocalPosition: {x: 6.28, y: 0.43888837, z: 0}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1799800352}
@@ -2066,6 +2083,10 @@ MonoBehaviour:
   Top: 0
   Bottom: 0
   zSpawn: 0
+  zTop: 0
+  zBottom: 0
+  xTop: 0
+  xBottom: 0
   onXaxis: 1
   zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
 --- !u!4 &2127667430
@@ -2075,7 +2096,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2127667428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.261482, y: 0.43888837, z: -0.7126835}
+  m_LocalPosition: {x: -5.52, y: 0.43888837, z: -0.71}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1799800352}

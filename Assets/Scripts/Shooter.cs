@@ -90,7 +90,7 @@ public class Shooter : MonoBehaviour {
 		}
 
 
-		if (t > 1.0) {
+		if (t > 0.2f) {
 			scanForZombies ();
 		}
 
