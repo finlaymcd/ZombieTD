@@ -16,7 +16,7 @@ public class BuildMenu : MonoBehaviour {
 
 	void Start(){
 		buttons = gameObject.GetComponentsInChildren<Button> ();
-		Debug.Log (buttons.Length);
+
 	}
 
 	public void build(Building b){
@@ -34,17 +34,21 @@ public class BuildMenu : MonoBehaviour {
 
 	public void closeMenu(){
 		gameObject.SetActive (false);
+
 	}
 
 	public void setMenuActive(){
 		gameObject.SetActive (true);
+		buttons = gameObject.GetComponentsInChildren<Button> ();
 		foreach(Button b in buttons){
 			string s = b.gameObject.name;
 			if (s == "Tower") {
-				if (man.gotWood () <= 10) {
+				if (man.gotWood () < 10) {
 					b.interactable = false;
 					//Image i = b.gameObject.GetComponent<Image> ();
 					//i.canvasRenderer.SetAlpha (0.1f);
+				} else {
+					b.interactable = true;
 				}
 			}
 		}

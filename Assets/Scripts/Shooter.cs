@@ -31,8 +31,14 @@ public class Shooter : MonoBehaviour {
 	private Base bas;
 	private GameManager man;
 	private float gatherTimer;
+	private bool milling;
+	private float xPos;
+	private float zPos;
+	private Vector3 newPos;
+
 
 	void Start () {
+		newPos = new Vector3(0.0f, 0.0f, 0.0f);
 		bas = FindObjectOfType<Base> ();
 		man = FindObjectOfType<GameManager> ();
 		resourceCapacity = 3;
@@ -45,7 +51,9 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(gathering == false && movingToResource == false && movingFromResource == false ){
+			millAbout ();
+		}
 		if (movingToResource) {
 			if (moving) {
 				moveToward ();
@@ -227,6 +235,29 @@ public class Shooter : MonoBehaviour {
 			movingToResource = true;
 			movingFromResource = false;
 			moveToward ();
+		}
+	}
+
+
+	public void millAbout(){
+		
+		Debug.Log (newPos);
+
+		if(milling == false){
+			Debug.Log ("millAbout");
+			xPos = Random.Range(-4.0f, 4.0f);
+			zPos =Random.Range(-4.0f, 4.0f);
+			newPos = new Vector3(xPos, 11, zPos);
+			milling = true;
+			
+		}
+		else{
+			
+			float step = moveSpeed * Time.deltaTime;
+			Vector3.MoveTowards(transform.position, newPos, 2.0f);
+			if(Vector3.Distance(transform.position, newPos) < 0.1F){
+				milling = false;
+			}
 		}
 	}
 
