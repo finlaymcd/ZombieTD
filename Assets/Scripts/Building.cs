@@ -19,6 +19,7 @@ public class Building : MonoBehaviour {
 	public List<Shooter> shooters;
 	public float height;
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -30,7 +31,7 @@ public class Building : MonoBehaviour {
 	}
 
 	public void addOccupant(Shooter s){ //add a person in to the building
-		if(numberResidents < capacity){
+		if(numberResidents < capacity && canEdit == false){
 			shooters.Add (s);
 			s.gameObject.transform.position = new Vector3 (transform.position.x, height, transform.position.z);
 			s.transform.parent = gameObject.transform;
