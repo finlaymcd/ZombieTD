@@ -38,7 +38,7 @@ public class Shooter : MonoBehaviour {
 
 
 	void Start () {
-		newPos = new Vector3(0.0f, 0.0f, 0.0f);
+		
 		bas = FindObjectOfType<Base> ();
 		man = FindObjectOfType<GameManager> ();
 		resourceCapacity = 3;
@@ -51,7 +51,7 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(gathering == false && movingToResource == false && movingFromResource == false ){
+		if(gathering == false && movingToResource == false && movingFromResource == false && inBuilding == false){
 			millAbout ();
 		}
 		if (movingToResource) {
@@ -241,20 +241,21 @@ public class Shooter : MonoBehaviour {
 
 	public void millAbout(){
 		
-		Debug.Log (newPos);
+		Debug.Log (milling);
 
 		if(milling == false){
-			Debug.Log ("millAbout");
+			
 			xPos = Random.Range(-4.0f, 4.0f);
-			zPos =Random.Range(-4.0f, 4.0f);
+			zPos = Random.Range(-4.0f, 4.0f);
 			newPos = new Vector3(xPos, 11, zPos);
 			milling = true;
 			
 		}
 		else{
 			
-			float step = moveSpeed * Time.deltaTime;
-			Vector3.MoveTowards(transform.position, newPos, 2.0f);
+			float step = 1 * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+	
 			if(Vector3.Distance(transform.position, newPos) < 0.1F){
 				milling = false;
 			}
