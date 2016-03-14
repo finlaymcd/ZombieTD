@@ -46,9 +46,10 @@ public class Zombie : MonoBehaviour {
 		
 	public void move(){
 		if (targetTransform != null) {
-			if (Vector3.Distance (currentPos, targetTransform.position) > 0.45f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+			if (Vector3.Distance (currentPos, targetTransform.position) > 0.8f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 				float step = speed * Time.deltaTime; //move towards the closest buidling
-				transform.position = Vector3.MoveTowards (transform.position, targetTransform.position, step); //apply movement
+				Vector3 go = new Vector3(targetTransform.position.x, 11, targetTransform.position.z);
+				transform.position = Vector3.MoveTowards (transform.position, go, step); //apply movement
 			} else {
 				if (t > attackRate) {
 					attack ();
@@ -91,7 +92,7 @@ public class Zombie : MonoBehaviour {
 		}
 
 		foreach(Shooter s in shooters){ //iterate through all buildings to find the closest
-			if (s != null) {
+			if (s != null && s.inBuilding == false) {
 				Transform t = s.transform;
 				float dist = Vector3.Distance (currentPos, t.position); //find distance between zombie and current selected building
 
