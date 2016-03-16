@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour {
 	private int wood;
 	private int survivors;
 	public Text woodText;
-	public Spawner s1;
-	public Spawner s2;
-	public Spawner s3;
-	public Spawner s4;
 	public Spawner[] spawners;
 
 	void Start(){
@@ -20,6 +16,11 @@ public class GameManager : MonoBehaviour {
 		setWoodText();
 	}
 
+	void Update(){
+		if (Input.GetButtonDown ("Fire1")) {
+			expandPlayArea (5.0f, spawners[3]);
+		}
+	}
 	public int gotWood(){
 		return wood;
 	}
@@ -41,22 +42,28 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void expandPlayArea(float expansion, Spawner s){
+		Debug.Log ("called");
 		foreach(Spawner spawn in spawners){
 			if(spawn == s){
-				if(spawn.onXaxis == true && spawn.transform.position.x < 0){ //south side
-					Vector3 newPos = new Vector3(spawn.transform.position.x - expansion, spawn.transform.position.z, spawn.transform.position.y);
+				Debug.Log ("spawn = s");
+				if(spawn.onXaxis && spawn.transform.position.x < 0){ //south side
+					Debug.Log("south");
+					Vector3 newPos = new Vector3(spawn.transform.position.x - expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
-				if(spawn.onXaxis == true && spawn.transform.position.x > 0){ // north side
-					Vector3 newPos = new Vector3(spawn.transform.position.x + expansion, spawn.transform.position.z, spawn.transform.position.y);
+				if(spawn.onXaxis && spawn.transform.position.x > 0){ // north side
+					Debug.Log("north");
+					Vector3 newPos = new Vector3(spawn.transform.position.x + expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
 				if(spawn.onXaxis == false && spawn.transform.position.z < 0){ // west side
-					Vector3 newPos = new Vector3(spawn.transform.position.x, spawn.transform.position.z - expansion, spawn.transform.position.y);
+					Debug.Log("west");
+					Vector3 newPos = new Vector3(spawn.transform.position.x + expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
 				if (spawn.onXaxis == false && spawn.transform.position.z > 0) { // east side (motherfucker)
-					Vector3 newPos = new Vector3(spawn.transform.position.x, spawn.transform.position.z + expansion, spawn.transform.position.y);
+					Debug.Log("east");
+					Vector3 newPos = new Vector3(spawn.transform.position.x - expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
 			}
