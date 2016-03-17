@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour {
 	private int survivors;
 	public Text woodText;
 	public Spawner[] spawners;
+	public Spawner north;
+	public Spawner south;
+	public Spawner east;
+	public Spawner west;
 
 	void Start(){
 		spawners = FindObjectsOfType (typeof(Spawner)) as Spawner[];
@@ -47,27 +51,27 @@ public class GameManager : MonoBehaviour {
 			if(spawn == s){
 				Debug.Log (s.transform.position);
 				Debug.Log ("spawn = s");
-				if(spawn.onXaxis && spawn.transform.position.x < 0){ //south side
+				if(s == south){ //south side
 					Debug.Log("south");
+					Vector3 newPos = new Vector3(spawn.transform.position.x , spawn.transform.position.y, spawn.transform.position.z - expansion);
+					s.transform.position = newPos;
+				}
+				if(s == north) { // north side  
+					Debug.Log("north");
+					Vector3 newPos = new Vector3(spawn.transform.position.x, spawn.transform.position.y, spawn.transform.position.z + expansion);
+					s.transform.position = newPos;
+				}
+				if(s == west){ // west side
+					Debug.Log("west");
 					Vector3 newPos = new Vector3(spawn.transform.position.x - expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
-			
-				if(spawn.onXaxis == false && spawn.transform.position.z < 0){ // west side
-					Debug.Log("west");
+				if (s == east) { // east side (motherfucker)
+					Debug.Log("east");
 					Vector3 newPos = new Vector3(spawn.transform.position.x + expansion, spawn.transform.position.y, spawn.transform.position.z);
 					s.transform.position = newPos;
 				}
-				if (spawn.onXaxis == false && spawn.transform.position.z > 0) { // east side (motherfucker)
-					Debug.Log("east");
-					Vector3 newPos = new Vector3(spawn.transform.position.x - expansion, spawn.transform.position.y, spawn.transform.position.z);
-					s.transform.position = newPos;
-				}
-				else { // north side
-					Debug.Log("north");
-					Vector3 newPos = new Vector3(spawn.transform.position.x, spawn.transform.position.y, spawn.transform.position.z - expansion);
-					s.transform.position = newPos;
-				}
+
 			}
 		}
 
