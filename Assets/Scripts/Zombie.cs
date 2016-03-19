@@ -138,7 +138,7 @@ public class Zombie : MonoBehaviour {
 	}
 
 	public void outSight(){
-		m = gameObject.GetComponent<MeshRenderer> ();
+	m = gameObject.GetComponent<MeshRenderer> ();
 		m.enabled = false;
 	}
 }

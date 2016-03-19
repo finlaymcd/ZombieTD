@@ -53,7 +53,6 @@ public class Base : Building {
 	}
 
 	public void OnMouseUp(){
-		Debug.Log ("mouse up");
 		timing = false;
 		if (clickTime < 0.3f){
 			if (menuOut) {
@@ -66,7 +65,6 @@ public class Base : Building {
 	}
 
 	public void revealMenu(){
-		Debug.Log ("reveal");
 		targetVector = new Vector2 (70, r.sizeDelta.y);
 		currentVector = new Vector2 (r.sizeDelta.x, r.sizeDelta.y);
 		lerping = true;

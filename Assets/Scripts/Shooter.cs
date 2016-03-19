@@ -170,7 +170,6 @@ public class Shooter : MonoBehaviour {
 	public void gatheringResource(){
 		if (gatherTimer >= 1.0f) {
 			if (resourceHeld < resourceCapacity && targetResource != null) {
-				Debug.Log ("past checks");
 				targetResource.removeResource (gatherSpeed, this);
 				gatherTimer = 0;
 				//resourceHeld += resourceCapacity; 
@@ -240,8 +239,6 @@ public class Shooter : MonoBehaviour {
 
 
 	public void millAbout(){
-		
-		Debug.Log (milling);
 
 		if(milling == false){
 			

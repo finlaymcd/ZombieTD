@@ -78,7 +78,6 @@ public class Selector : MonoBehaviour {
 					}
 					if (hit.collider.gameObject.tag == "Resource") {
 						Resource r = hit.collider.GetComponentInParent<Resource>();
-						Debug.Log (r.name);
 						shooter.collectResource (r);
 					}
 				}
