@@ -61,6 +61,8 @@ public class Selector : MonoBehaviour {
 		}
 	}
 
+
+
 	public void finishDrag(){
 		if (dragObject != null) {
 			if (dragObject.GetComponent<Building> () != null) {

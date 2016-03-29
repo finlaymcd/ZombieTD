@@ -184,7 +184,12 @@ public class Shooter : MonoBehaviour {
 	}
 
 
+	void OnCollisionEnter(Collision col){
 
+	}
+	void OnCollisionExit(Collision col){
+
+	}
 
 	public void moveToward(){
 
