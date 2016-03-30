@@ -1428,6 +1428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountContained: 5
+  position: e
 --- !u!4 &1091733194
 Transform:
   m_ObjectHideFlags: 0
@@ -1802,6 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountContained: 5
+  position: w
 --- !u!4 &1585834855
 Transform:
   m_ObjectHideFlags: 0
@@ -1891,6 +1893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountContained: 5
+  position: s
 --- !u!4 &1717685115
 Transform:
   m_ObjectHideFlags: 0
@@ -2475,6 +2478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountContained: 5
+  position: n
 --- !u!4 &2085593037
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,7 +2486,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2085593035}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0.09, y: 11.28, z: 5.45}
+  m_LocalPosition: {x: 0.09, y: 11.28, z: 5.52}
   m_LocalScale: {x: 1, y: 2.2, z: 10}
   m_Children:
   - {fileID: 738542042}

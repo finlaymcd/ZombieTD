@@ -169,7 +169,7 @@ public class Shooter : MonoBehaviour {
 
 	public void gatheringResource(){
 		if (gatherTimer >= 1.0f) {
-			if (resourceHeld < resourceCapacity && targetResource != null) {
+			if (resourceHeld < resourceCapacity && targetResource.amountContained >= 0) {
 				targetResource.removeResource (gatherSpeed, this);
 				gatherTimer = 0;
 				//resourceHeld += resourceCapacity; 
@@ -184,12 +184,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter(Collision col){
 
-	}
-	void OnCollisionExit(Collision col){
-
-	}
 
 	public void moveToward(){
 
