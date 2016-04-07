@@ -39,7 +39,7 @@ public class Selector : MonoBehaviour {
 	public void drag(){
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		if (Physics.Raycast (ray, out hit)) {
-			castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
+			castPos = new Vector3 (hit.point.x, 10.615f, hit.point.z);
 			dragObject.transform.position = castPos;
 		}
 	}

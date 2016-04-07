@@ -88,6 +88,7 @@ public class Building : MonoBehaviour {
 		Button b = gameObject.GetComponentInChildren<Button> ();
 		b.gameObject.SetActive (false);
 		canEdit = false;
+
 	}
 
 
