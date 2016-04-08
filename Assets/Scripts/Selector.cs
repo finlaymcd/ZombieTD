@@ -75,10 +75,12 @@ public class Selector : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				if (Physics.Raycast (ray, out hit)) {
 					if (hit.collider.gameObject.GetComponent<Building> ()) {
+						shooter.interrupt ();
 						Building b = hit.collider.gameObject.GetComponent<Building> ();
 						b.addOccupant (dragObject.GetComponent<Shooter> ());
 					}
 					if (hit.collider.gameObject.tag == "Resource") {
+						shooter.interrupt ();
 						Resource r = hit.collider.GetComponentInParent<Resource>();
 						shooter.collectResource (r);
 					}

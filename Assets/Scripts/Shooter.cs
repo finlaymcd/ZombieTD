@@ -137,6 +137,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void scanForZombies(){ // if there are zombies near, checked every 1 second
+		Debug.Log("scan");
 		zombies = FindObjectsOfType (typeof(Zombie)) as Zombie[];
 		foreach(Zombie z in zombies){
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
@@ -147,6 +148,12 @@ public class Shooter : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void interrupt(){
+		gathering = false;
+		movingFromResource = false;
+		movingToResource = false;
 	}
 
 	public void addHealth(int h){
