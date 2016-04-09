@@ -266,4 +266,8 @@ public class Shooter : MonoBehaviour {
 		}
 	}
 
+	public void scout(){
+		Debug.Log ("scouting");
+	}
+
 }

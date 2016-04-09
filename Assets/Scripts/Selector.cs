@@ -84,6 +84,9 @@ public class Selector : MonoBehaviour {
 						Resource r = hit.collider.GetComponentInParent<Resource>();
 						shooter.collectResource (r);
 					}
+					if(hit.collider.gameObject.tag == "ScoutUI"){
+						shooter.scout ();
+					}
 				}
 			}
 		}
