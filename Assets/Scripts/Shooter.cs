@@ -35,10 +35,10 @@ public class Shooter : MonoBehaviour {
 	private float xPos;
 	private float zPos;
 	private Vector3 newPos;
-
+	private Transform actualPos;
 
 	void Start () {
-		
+		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		bas = FindObjectOfType<Base> ();
 		man = FindObjectOfType<GameManager> ();
 		resourceCapacity = 3;
@@ -51,6 +51,12 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (milling) {
+			Vector3 relativePos = newPos - transform.position;
+			Quaternion rotation = Quaternion.LookRotation (relativePos);
+			transform.rotation = rotation;
+
+		}
 		if(gathering == false && movingToResource == false && movingFromResource == false && inBuilding == false){
 			millAbout ();
 		}
@@ -88,11 +94,8 @@ public class Shooter : MonoBehaviour {
 		if (t >= shootTime) { //if a few seconds have passed
 			shoot ();
 		}
+		scanForZombies ();
 
-
-		if (t > 0.2f) {
-			scanForZombies ();
-		}
 
 
 		t += Time.deltaTime; //increment time
@@ -107,11 +110,15 @@ public class Shooter : MonoBehaviour {
 
 	public void shoot(){
 		if (GameObject.Find("ZombiePrefab(Clone)")){ //if there is a zombie in scene
-			if((Vector3.Distance(currentPos, target.gameObject.transform.position)) <= sightRange){
+			if((Vector3.Distance(actualPos.position, target.gameObject.transform.position)) <= sightRange){
+				Vector3 relativePos = target.transform.position - actualPos.position;
+				Quaternion rotation = Quaternion.LookRotation (relativePos);
+				actualPos.transform.rotation = rotation;
 				target.inSight ();
 				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
 				t = 0; //reset timer to 0
 				shootTime = 1; //set new random shoot time.
+				scanForZombies();
 				}
 			}
 	}
@@ -137,10 +144,10 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void scanForZombies(){ // if there are zombies near, checked every 1 second
-		Debug.Log("scan");
 		zombies = FindObjectsOfType (typeof(Zombie)) as Zombie[];
 		foreach(Zombie z in zombies){
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
+				interrupt ();
 				z.inSight ();
 				if (target.m.enabled != true) {
 					target = z;
@@ -154,6 +161,7 @@ public class Shooter : MonoBehaviour {
 		gathering = false;
 		movingFromResource = false;
 		movingToResource = false;
+		milling = false;
 	}
 
 	public void addHealth(int h){
