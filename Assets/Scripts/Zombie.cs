@@ -49,6 +49,9 @@ public class Zombie : MonoBehaviour {
 				float step = speed * Time.deltaTime; //move towards the closest buidling
 				Vector3 go = new Vector3(targetTransform.position.x, 11, targetTransform.position.z);
 				transform.position = Vector3.MoveTowards (transform.position, go, step); //apply movement
+				Vector3 relativePos = targetTransform.position - gameObject.transform.position;
+				Quaternion rotation = Quaternion.LookRotation (relativePos);
+				gameObject.transform.rotation = rotation;
 			} else {
 				if (t > attackRate) {
 					attack ();

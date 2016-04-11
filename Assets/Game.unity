@@ -116,7 +116,7 @@ MonoBehaviour:
   spawnTwo: {fileID: 337704694}
   spawnThree: {fileID: 1659113005}
   spawnFour: {fileID: 2127667429}
-  spawnRate: 10
+  spawnRate: 1
 --- !u!4 &6234814
 Transform:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   xTop: 0
   xBottom: 0
   onXaxis: 0
-  zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
+  zomba: {fileID: 164960, guid: 76bb0b56bca0d5547a9501e7294fa3bf, type: 2}
 --- !u!4 &337704695
 Transform:
   m_ObjectHideFlags: 0
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   xTop: 0
   xBottom: 0
   onXaxis: 0
-  zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
+  zomba: {fileID: 164960, guid: 76bb0b56bca0d5547a9501e7294fa3bf, type: 2}
 --- !u!1 &1025466925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,7 +4146,7 @@ MonoBehaviour:
   xTop: 0
   xBottom: 0
   onXaxis: 1
-  zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
+  zomba: {fileID: 164960, guid: 76bb0b56bca0d5547a9501e7294fa3bf, type: 2}
 --- !u!4 &1659113006
 Transform:
   m_ObjectHideFlags: 0
@@ -5339,7 +5339,7 @@ MonoBehaviour:
   xTop: 0
   xBottom: 0
   onXaxis: 1
-  zomba: {fileID: 112546, guid: 1f02d7cbb60d92a459dbfc028b030c3a, type: 2}
+  zomba: {fileID: 164960, guid: 76bb0b56bca0d5547a9501e7294fa3bf, type: 2}
 --- !u!4 &2127667430
 Transform:
   m_ObjectHideFlags: 0

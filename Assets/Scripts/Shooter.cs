@@ -109,11 +109,13 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void shoot(){
-		if (GameObject.Find("ZombiePrefab(Clone)")){ //if there is a zombie in scene
+		if (GameObject.Find("ZombiePrefab 1(Clone)")){ //if there is a zombie in scene
 			if((Vector3.Distance(actualPos.position, target.gameObject.transform.position)) <= sightRange){
-				Vector3 relativePos = target.transform.position - actualPos.position;
-				Quaternion rotation = Quaternion.LookRotation (relativePos);
-				actualPos.transform.rotation = rotation;
+				if (inBuilding == false) {
+					Vector3 relativePos = target.transform.position - actualPos.position;
+					Quaternion rotation = Quaternion.LookRotation (relativePos);
+					actualPos.transform.rotation = rotation;
+				}
 				target.inSight ();
 				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
 				t = 0; //reset timer to 0
