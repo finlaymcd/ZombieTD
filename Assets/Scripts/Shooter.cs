@@ -149,7 +149,7 @@ public class Shooter : MonoBehaviour {
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
 				interrupt ();
 				z.inSight ();
-				if (target.m.enabled != true) {
+				if (target.model != null) {
 					target = z;
 				}
 			}
