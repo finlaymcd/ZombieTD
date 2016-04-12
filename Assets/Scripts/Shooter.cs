@@ -51,6 +51,7 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		if (milling) {
 			Vector3 relativePos = newPos - transform.position;
 			Quaternion rotation = Quaternion.LookRotation (relativePos);
@@ -109,6 +110,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void shoot(){
+		Debug.Log ("shoot called");
 		if (GameObject.Find("ZombiePrefab 1(Clone)")){ //if there is a zombie in scene
 			if((Vector3.Distance(actualPos.position, target.gameObject.transform.position)) <= sightRange){
 				if (inBuilding == false) {
@@ -117,6 +119,7 @@ public class Shooter : MonoBehaviour {
 					actualPos.transform.rotation = rotation;
 				}
 				target.inSight ();
+				Debug.Log ("shoot");
 				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
 				t = 0; //reset timer to 0
 				shootTime = 1; //set new random shoot time.

@@ -22,22 +22,22 @@ public class Resource : MonoBehaviour {
 			if(gameObject != null){
 				Vector3 currentPos = gameObject.transform.position;
 				if(position == "n"){
-					Vector3 newPos = new Vector3 (currentPos.x, currentPos.y, currentPos.z + 0.2f );
+					Vector3 newPos = new Vector3 (currentPos.x, currentPos.y, currentPos.z + 0.1f );
 					gameObject.transform.position = newPos;
 					amountContained = 5;
 				}
 				if (position == "w") {
-					Vector3 newPos = new Vector3 (currentPos.x - 0.2f , currentPos.y, currentPos.z );
+					Vector3 newPos = new Vector3 (currentPos.x - 0.1f , currentPos.y, currentPos.z );
 					gameObject.transform.position = newPos;
 					amountContained = 5;
 				}
 				if(position == "e"){
-					Vector3 newPos = new Vector3 (currentPos.x + 0.2f , currentPos.y, currentPos.z );
+					Vector3 newPos = new Vector3 (currentPos.x + 0.1f , currentPos.y, currentPos.z );
 					gameObject.transform.position = newPos;
 					amountContained = 5;
 				}
 				if(position == "s"){
-					Vector3 newPos = new Vector3 (currentPos.x, currentPos.y, currentPos.z - 0.2f );
+					Vector3 newPos = new Vector3 (currentPos.x, currentPos.y, currentPos.z - 0.1f );
 					gameObject.transform.position = newPos;
 					amountContained = 5;
 				}
