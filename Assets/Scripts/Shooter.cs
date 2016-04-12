@@ -19,7 +19,7 @@ public class Shooter : MonoBehaviour {
 	public int health;
 	private Vector3 startPos;
 	private Resource targetResource;
-	private int moveSpeed;
+	private float moveSpeed;
 	private bool moving;
 	public Transform trans;
 	bool gathering;
@@ -36,14 +36,16 @@ public class Shooter : MonoBehaviour {
 	private float zPos;
 	private Vector3 newPos;
 	private Transform actualPos;
+	private bool shooting;
 
 	void Start () {
+		shooting = false;
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		bas = FindObjectOfType<Base> ();
 		man = FindObjectOfType<GameManager> ();
 		resourceCapacity = 3;
 		gatherSpeed = 1;
-		moveSpeed = 2;
+		moveSpeed = 0.5f;
 		sight = gameObject.GetComponentInChildren<Light> ();
 		shootTime = 1;
 		setLight ();
@@ -51,14 +53,16 @@ public class Shooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		scanForZombies ();
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		if (milling) {
 			Vector3 relativePos = newPos - transform.position;
+			relativePos.y = 0;
 			Quaternion rotation = Quaternion.LookRotation (relativePos);
 			transform.rotation = rotation;
 
 		}
-		if(gathering == false && movingToResource == false && movingFromResource == false && inBuilding == false){
+		if(gathering == false && movingToResource == false && movingFromResource == false && inBuilding == false && shooting == false){
 			millAbout ();
 		}
 		if (movingToResource) {
@@ -76,7 +80,13 @@ public class Shooter : MonoBehaviour {
 		}
 
 		if(target == null){
-			currentPos = transform.position;
+
+			scanForZombies ();
+
+
+
+
+			currentPos = actualPos.position;
 			float minDistance = Mathf.Infinity;
 			zombies = FindObjectsOfType (typeof(Zombie)) as Zombie[];
 			foreach(Zombie z in zombies){ //iterate through all zombies to find the closest
@@ -90,12 +100,13 @@ public class Shooter : MonoBehaviour {
 					}
 				}
 			}
+
 		}
 
 		if (t >= shootTime) { //if a few seconds have passed
 			shoot ();
 		}
-		scanForZombies ();
+
 
 
 
@@ -110,21 +121,24 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void shoot(){
-		Debug.Log ("shoot called");
 		if (GameObject.Find("ZombiePrefab 1(Clone)")){ //if there is a zombie in scene
-			if((Vector3.Distance(actualPos.position, target.gameObject.transform.position)) <= sightRange){
+			if ((Vector3.Distance (actualPos.position, target.gameObject.transform.position)) <= sightRange) {
+				shooting = true;
 				if (inBuilding == false) {
 					Vector3 relativePos = target.transform.position - actualPos.position;
+					relativePos.y = 0;
 					Quaternion rotation = Quaternion.LookRotation (relativePos);
-					actualPos.transform.rotation = rotation;
+					transform.rotation = rotation;
 				}
 				target.inSight ();
 				Debug.Log ("shoot");
-				(Instantiate (projectile)).setShooter(this.GetComponent<Shooter>(), target) ;//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
+				(Instantiate (projectile)).setShooter (this.GetComponent<Shooter> (), target);//instantiate projectile, and immediately call the setShooter method on that projectile, passing in this game object, and the nearest zombie as target.
 				t = 0; //reset timer to 0
 				shootTime = 1; //set new random shoot time.
-				scanForZombies();
-				}
+				scanForZombies ();
+			} else {
+				shooting = false;
+			}
 			}
 	}
 
@@ -154,8 +168,10 @@ public class Shooter : MonoBehaviour {
 			if((Vector3.Distance(currentPos, z.gameObject.transform.position)) <= sightRange){
 				interrupt ();
 				z.inSight ();
-				if (target.model != null) {
-					target = z;
+				if (target != null) {
+					if (target.model != null) {
+						target = z;
+					}
 				}
 			}
 		}
@@ -270,7 +286,7 @@ public class Shooter : MonoBehaviour {
 		}
 		else{
 			
-			float step = 1 * Time.deltaTime;
+			float step = moveSpeed * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, newPos, step);
 	
 			if(Vector3.Distance(transform.position, newPos) < 0.1F){
