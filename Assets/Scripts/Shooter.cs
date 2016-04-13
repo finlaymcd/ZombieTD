@@ -37,18 +37,28 @@ public class Shooter : MonoBehaviour {
 	private Vector3 newPos;
 	private Transform actualPos;
 	private bool shooting;
+	private string name;
+	public ScoutMenu scoutMenu;
 
 	void Start () {
+		man = FindObjectOfType<GameManager> ();
 		shooting = false;
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		bas = FindObjectOfType<Base> ();
-		man = FindObjectOfType<GameManager> ();
 		resourceCapacity = 3;
 		gatherSpeed = 1;
 		moveSpeed = 0.5f;
 		sight = gameObject.GetComponentInChildren<Light> ();
 		shootTime = 1;
-		setLight ();
+		Invoke ("setName", 2);
+		//setLight ();
+
+		//Color RandCol = Random.ColorHSV (0, 255);
+
+		//Renderer guyRender = gameObject.GetComponentInChildren<Renderer> ();
+		//Material testCol = guyRender.materials[1];
+		//guyRender.materials[1].color = RandCol;
+		//Debug.Log (testCol);
 	}
 	
 	// Update is called once per frame
@@ -112,6 +122,14 @@ public class Shooter : MonoBehaviour {
 
 		t += Time.deltaTime; //increment time
 
+	}
+
+	public string getName(){
+		return name;
+	}
+
+	public void setName(){
+		name = man.generateName ();
 	}
 
 	public void addResource(int i){
@@ -296,7 +314,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void scout(){
-		Debug.Log ("scouting");
+		scoutMenu.addScoutUI (this);
 	}
 
 }

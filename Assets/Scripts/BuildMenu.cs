@@ -38,6 +38,7 @@ public class BuildMenu : MonoBehaviour {
 	}
 
 	public void setMenuActive(){
+		Debug.Log ("called");
 		gameObject.SetActive (true);
 		buttons = gameObject.GetComponentsInChildren<Button> ();
 		foreach(Button b in buttons){

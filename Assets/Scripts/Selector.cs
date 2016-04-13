@@ -9,6 +9,7 @@ public class Selector : MonoBehaviour {
 	private float clickTime;
 	private bool selecting;
 
+
 	// Use this for initialization
 	void Start () {
 		clickTime = 0;

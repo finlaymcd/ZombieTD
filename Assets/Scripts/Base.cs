@@ -5,20 +5,26 @@ using UnityEngine.UI;
 public class Base : Building {
 
 	private float clickTime;
-	private float lerpTime;
-	private bool timing;
+	private float lerpTime1;
+	private bool timing1;
 	public Button menu;
+	public Button scoutMenu;
 	private RectTransform r;
+	private RectTransform scoutRect;
 	private bool menuOut;
-	private bool lerping;
-	private Vector2 currentVector;
-	private Vector2 targetVector;
+	private bool lerping1;
+	private bool lerping2;
+	private Vector2 currentSizeVector;
+	private Vector2 targetSizeVector;
+	public SecondLerp scout;
+	public SecondLerp build;
 
 	// Use this for initialization
 	void Start () {
 		height = 12.0f;
-		lerping = false;
+		lerping1 = false;
 		r = menu.GetComponent<RectTransform> ();
+		scoutRect = scoutMenu.GetComponent<RectTransform> ();
 		menuOut = false;
 		clickTime = 0;
 		maxHealth = 15;
@@ -29,52 +35,52 @@ public class Base : Building {
 	}
 
 	void Update(){
-		if (timing) {
+		/*
+		if (timing1) {
 			clickTime += Time.deltaTime;
 		}
-		if (lerping) {
-			Vector2 size = Vector2.Lerp (currentVector, targetVector, lerpTime);
+		if (lerping1) {
+			Vector2 size = Vector2.Lerp (currentSizeVector, targetSizeVector, lerpTime1);
 			r.sizeDelta = size;
-			lerpTime += Time.deltaTime * 2;
+			scoutRect.sizeDelta = size;
+			lerpTime1 += Time.deltaTime * 2;
 		}
 
-		if (lerpTime >= 1.0f) {
+		if (lerpTime1 >= 1.0f) {
 			
-			lerping = false;
-			lerpTime = 0;
+			lerping1 = false;
+			lerpTime1 = 0;
+			lerping2 = true;
 		}
-
+*/
 	}
 
 	public void OnMouseDown(){
-		timing = true;
+		
 
 
 	}
 
 	public void OnMouseUp(){
-		timing = false;
-		if (clickTime < 0.3f){
-			if (menuOut) {
-				hideMenu ();
-			} else {
-				revealMenu ();
-			}
+		
+		if (menuOut) {
+			hideMenu ();
+
+		} else {
+			revealMenu ();
 		}
-		clickTime = 0;
+	
 	}
 
 	public void revealMenu(){
-		targetVector = new Vector2 (70, r.sizeDelta.y);
-		currentVector = new Vector2 (r.sizeDelta.x, r.sizeDelta.y);
-		lerping = true;
 		menuOut = true;
+		build.startLerp ();
+		scout.startLerp ();
 	}
 
 	public void hideMenu(){
-		currentVector = new Vector2 (r.sizeDelta.x, r.sizeDelta.y);
-		targetVector = new Vector2 (2, r.sizeDelta.y);
-		lerping = true;
 		menuOut = false;
+		build.fall ();
+		scout.fall ();
 	}
 }
