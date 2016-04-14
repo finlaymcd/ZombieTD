@@ -33,13 +33,16 @@ public class Building : MonoBehaviour {
 	public void addOccupant(Shooter s){ //add a person in to the building
 		if(numberResidents < capacity && canEdit == false){
 			shooters.Add (s);
+
 			s.gameObject.transform.position = new Vector3 (transform.position.x, height, transform.position.z);
 			s.transform.parent = gameObject.transform;
 			s.sightRange = s.sightRange * 2;
-			s.setLight ();
+
 			s.occupiedBuilding = this;
 			s.inBuilding = true;
 			numberResidents++;
+			s.setLight ();
+			s.repositionLight ();
 		}
 	}
 
@@ -54,6 +57,7 @@ public class Building : MonoBehaviour {
 				shooters.Remove (shoot);
 				s.sightRange = s.sightRange / 2;
 				s.setLight ();
+				s.resetLight();
 				break;
 			}
 		}

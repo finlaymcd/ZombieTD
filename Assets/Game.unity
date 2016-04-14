@@ -1980,6 +1980,10 @@ Prefab:
       propertyPath: m_Name
       value: Shooter (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 404250, guid: bcbc3b1fb2fa654459d120daa5afce3e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bcbc3b1fb2fa654459d120daa5afce3e, type: 2}
   m_IsPrefabParent: 0

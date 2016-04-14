@@ -324,4 +324,12 @@ public class Shooter : MonoBehaviour {
 		scouting = false;
 	}
 
+	public void repositionLight(){
+		sight.transform.localPosition = new Vector3 (this.gameObject.transform.localPosition.x, -2.39f, this.gameObject.transform.position.z);
+	}
+
+	public void resetLight(){
+		sight.transform.localPosition = new Vector3 (this.gameObject.transform.localPosition.x, -0.54f, this.gameObject.transform.position.z);
+	}
+
 }
