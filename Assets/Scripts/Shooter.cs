@@ -11,7 +11,7 @@ public class Shooter : MonoBehaviour {
 	private Zombie[] zombies;
 	private Vector3 currentPos;
 	public double sightRange;
-	public Light sight;
+	public GameObject sight;
 	private bool zombiesNear = false;
 	private float searchTimer;
 	public bool inBuilding;
@@ -48,17 +48,11 @@ public class Shooter : MonoBehaviour {
 		resourceCapacity = 3;
 		gatherSpeed = 1;
 		moveSpeed = 0.5f;
-		sight = gameObject.GetComponentInChildren<Light> ();
 		shootTime = 1;
 		Invoke ("setName", 2);
-		//setLight ();
+		setLight ();
 
-		//Color RandCol = Random.ColorHSV (0, 255);
 
-		//Renderer guyRender = gameObject.GetComponentInChildren<Renderer> ();
-		//Material testCol = guyRender.materials[1];
-		//guyRender.materials[1].color = RandCol;
-		//Debug.Log (testCol);
 	}
 	
 	// Update is called once per frame
@@ -162,21 +156,21 @@ public class Shooter : MonoBehaviour {
 
 	public void setLight(){
 		if (sightRange <= 1.0) {
-			sight.spotAngle = 40;
+			sight.transform.localScale = new Vector3 (40, 40, 1);
 		} else if (sightRange <= 1.5) {
-			sight.spotAngle = 55;
+			sight.transform.localScale = new  Vector3(60, 60, 1);
 		} else if (sightRange <= 2.0) {
-			sight.spotAngle = 70;
+			sight.transform.localScale = new  Vector3(80, 80, 1);
 		} else if (sightRange <= 2.5) {
-			sight.spotAngle = 85;
+			sight.transform.localScale = new  Vector3(100, 100, 1);
 		} else if (sightRange <= 3.0) {
-			sight.spotAngle = 100;
+			sight.transform.localScale = new  Vector3(130, 130, 1);
 		} else if (sightRange <= 3.5) {
-			sight.spotAngle = 115;
+			sight.transform.localScale = new  Vector3(160, 160, 1);
 		} else if (sightRange <= 4.0) {
-			sight.spotAngle = 130;
+			sight.transform.localScale = new  Vector3(180, 180, 1);
 		} else {
-			sight.spotAngle = 140;
+			sight.transform.localScale = new  Vector3(200, 200, 1);
 		}
 	}
 
