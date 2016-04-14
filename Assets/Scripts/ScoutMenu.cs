@@ -26,11 +26,14 @@ public class ScoutMenu : MonoBehaviour {
 		
 	}
 
+
+
 	public void addScoutUI(Shooter s){
 		
 		Transform ui = (Instantiate (scoutUI, new Vector3 (0, 0, 0), Quaternion.identity) as Transform);
 		ui.parent = GameObject.Find ("ScoutScroll").transform;
 		ScoutUIItem UI = ui.gameObject.GetComponentInChildren<ScoutUIItem> ();
+
 		RectTransform recta = UI.gameObject.GetComponent<RectTransform> ();
 		float yPos = -50;
 		for(int i = 0; i < scoutCount; i++){
@@ -40,7 +43,7 @@ public class ScoutMenu : MonoBehaviour {
 		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y + 150);
 		}
 		recta.anchoredPosition = new Vector2 (0, yPos);
-		UI.setName (s.getName());
+		UI.setName (s.getName(), s);
 		if(menuOpen == false){
 			Image[] scoutUIimage = ui.gameObject.GetComponentsInChildren<Image>();
 			Text[] scoutUItext = ui.gameObject.GetComponentsInChildren<Text>();

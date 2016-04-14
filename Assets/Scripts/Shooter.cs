@@ -39,8 +39,11 @@ public class Shooter : MonoBehaviour {
 	private bool shooting;
 	private string name;
 	public ScoutManager scoutMan;
+	private bool scouting;
+
 
 	void Start () {
+		scouting = false;
 		scoutMan = GameObject.Find ("ScoutManager").GetComponent<ScoutManager>();
 		man = FindObjectOfType<GameManager> ();
 		shooting = false;
@@ -308,8 +311,17 @@ public class Shooter : MonoBehaviour {
 		}
 	}
 
+	public bool returnScoutStatus(){
+		return scouting;
+	}
+
 	public void scout(){
+		scouting = true;
 		scoutMan.addScout (this);
+	}
+
+	public void returnFromScout(){
+		scouting = false;
 	}
 
 }

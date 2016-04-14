@@ -94,7 +94,7 @@ public class Zombie : MonoBehaviour {
 		}
 
 		foreach(Shooter s in shooters){ //iterate through all buildings to find the closest
-			if (s != null && s.inBuilding == false) {
+			if (s != null && s.inBuilding == false && s.returnScoutStatus() == false) {
 				Transform t = s.transform;
 				float dist = Vector3.Distance (currentPos, t.position); //find distance between zombie and current selected building
 
