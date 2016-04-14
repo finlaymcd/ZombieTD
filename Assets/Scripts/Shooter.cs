@@ -38,9 +38,10 @@ public class Shooter : MonoBehaviour {
 	private Transform actualPos;
 	private bool shooting;
 	private string name;
-	public ScoutMenu scoutMenu;
+	public ScoutManager scoutMan;
 
 	void Start () {
+		scoutMan = GameObject.Find ("ScoutManager").GetComponent<ScoutManager>();
 		man = FindObjectOfType<GameManager> ();
 		shooting = false;
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
@@ -308,7 +309,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void scout(){
-		scoutMenu.addScoutUI (this);
+		scoutMan.addScout (this);
 	}
 
 }

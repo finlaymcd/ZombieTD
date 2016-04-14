@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScoutMenu : MonoBehaviour {
 
@@ -9,12 +10,15 @@ public class ScoutMenu : MonoBehaviour {
 	public Transform scoutUI;
 	private List<ScoutUIItem> scouts = new List<ScoutUIItem>();
 	private int scoutCount;
+	private bool menuOpen;
 	public RectTransform scroller;
 
 	// Use this for initialization
 
 	void Start () {
 		scoutCount = 0;
+
+		closeScoutMenu ();
 	}
 	
 	// Update is called once per frame
@@ -26,8 +30,6 @@ public class ScoutMenu : MonoBehaviour {
 		
 		Transform ui = (Instantiate (scoutUI, new Vector3 (0, 0, 0), Quaternion.identity) as Transform);
 		ui.parent = GameObject.Find ("ScoutScroll").transform;
-
-		Debug.Log (ui);
 		ScoutUIItem UI = ui.gameObject.GetComponentInChildren<ScoutUIItem> ();
 		RectTransform recta = UI.gameObject.GetComponent<RectTransform> ();
 		float yPos = -50;
@@ -39,6 +41,16 @@ public class ScoutMenu : MonoBehaviour {
 		}
 		recta.anchoredPosition = new Vector2 (0, yPos);
 		UI.setName (s.getName());
+		if(menuOpen == false){
+			Image[] scoutUIimage = ui.gameObject.GetComponentsInChildren<Image>();
+			Text[] scoutUItext = ui.gameObject.GetComponentsInChildren<Text>();
+			foreach(Image i in scoutUIimage){
+				i.enabled = false;
+			}
+			foreach(Text t in scoutUItext){
+				t.enabled = false;
+			}
+		}
 		scoutCount++;
 	}
 
@@ -47,11 +59,29 @@ public class ScoutMenu : MonoBehaviour {
 	}
 
 	public void closeScoutMenu(){
-		gameObject.SetActive (false);
+		
+		Image[] scoutUI = gameObject.GetComponentsInChildren<Image>();
+		Text[] scoutUItext = gameObject.GetComponentsInChildren<Text>();
+		foreach(Image i in scoutUI){
+			i.enabled = false;
+		}
+		foreach(Text t in scoutUItext){
+			t.enabled = false;
+		}
+		menuOpen = false;
 	}
 
 	public void openScoutMenu(){
-		gameObject.SetActive (true);
+
+		Image[] scoutUI = gameObject.GetComponentsInChildren<Image>();
+		Text[] scoutUItext = gameObject.GetComponentsInChildren<Text>();
+		foreach(Image i in scoutUI){
+			i.enabled = true;
+		}
+		foreach(Text t in scoutUItext){
+			t.enabled = true;
+		}
+		menuOpen = true;
 	}
 
 
