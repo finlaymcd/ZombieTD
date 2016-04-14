@@ -156,21 +156,21 @@ public class Shooter : MonoBehaviour {
 
 	public void setLight(){
 		if (sightRange <= 1.0) {
-			sight.transform.localScale = new Vector3 (40, 40, 1);
+			sight.transform.localScale = new Vector3 (20, 20, 1);
 		} else if (sightRange <= 1.5) {
-			sight.transform.localScale = new  Vector3(60, 60, 1);
+			sight.transform.localScale = new  Vector3(30, 30, 1);
 		} else if (sightRange <= 2.0) {
-			sight.transform.localScale = new  Vector3(80, 80, 1);
+			sight.transform.localScale = new  Vector3(40, 40, 1);
 		} else if (sightRange <= 2.5) {
-			sight.transform.localScale = new  Vector3(100, 100, 1);
+			sight.transform.localScale = new  Vector3(50, 50, 1);
 		} else if (sightRange <= 3.0) {
-			sight.transform.localScale = new  Vector3(130, 130, 1);
+			sight.transform.localScale = new  Vector3(60, 60, 1);
 		} else if (sightRange <= 3.5) {
-			sight.transform.localScale = new  Vector3(160, 160, 1);
+			sight.transform.localScale = new  Vector3(80, 80, 1);
 		} else if (sightRange <= 4.0) {
-			sight.transform.localScale = new  Vector3(180, 180, 1);
+			sight.transform.localScale = new  Vector3(90, 90, 1);
 		} else {
-			sight.transform.localScale = new  Vector3(200, 200, 1);
+			sight.transform.localScale = new  Vector3(100, 100, 1);
 		}
 	}
 
