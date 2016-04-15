@@ -37,11 +37,9 @@ public class ScoutManager : MonoBehaviour {
 	public void returnScout(Shooter s, ScoutUIItem item, float startTime){
 		float totalTime = time - startTime;
 		reapReward (totalTime);
-		bool destroy = false;
 		foreach(Shooter shoot in scouts){
 			if(shoot == s){
 				s.returnFromScout ();
-				destroy = true;
 				MeshRenderer[] visible = s.gameObject.GetComponentsInChildren<MeshRenderer> ();
 				foreach(MeshRenderer m in visible){
 					m.enabled = true;
@@ -61,6 +59,21 @@ public class ScoutManager : MonoBehaviour {
 	}
 
 	public void reapReward(float timeOut){
-		Debug.Log ("reap reward, time out: " + timeOut);
+
+		int woodFound = 0;
+		float woodChance = Random.Range (10, 40);
+		woodFound = Mathf.RoundToInt (timeOut/woodChance);
+
+		int metalFound = 0;
+		float metalChance = Random.Range (20, 100);
+		metalFound = Mathf.RoundToInt (timeOut/metalChance);
+
+		int survivorsFound = 0;
+		float survivorChance = Random.Range (50, 500);
+		survivorsFound = Mathf.RoundToInt (timeOut/survivorChance);
+
+		Debug.Log ("wood: " + woodFound);
+		Debug.Log ("metal: " + metalFound);
+		Debug.Log ("survivors " + survivorsFound);
 	}
 }

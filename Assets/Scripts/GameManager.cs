@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour {
 		firstNames.Add ("Gerald");
 		firstNames.Add ("Ralph");
 		firstNames.Add ("Gordon");
+		firstNames.Add ("Jake");
+		firstNames.Add ("Craig");
+		firstNames.Add ("Boris");
+		firstNames.Add ("John");
+		firstNames.Add ("Rob");
 		lastNames.Add ("Kemp");
 		lastNames.Add ("Hopen");
 		lastNames.Add ("McDonald");
@@ -47,6 +52,11 @@ public class GameManager : MonoBehaviour {
 		lastNames.Add ("Fiddlesworth");
 		lastNames.Add("Jelley");
 		lastNames.Add("Lexington");
+		lastNames.Add ("Fletcher");
+		lastNames.Add ("Kane");
+		lastNames.Add ("Snow");
+		lastNames.Add ("McLellan");
+		lastNames.Add ("McGregor");
 
 	}
 
@@ -116,8 +126,8 @@ public class GameManager : MonoBehaviour {
 
 	}
 	public string generateName(){
-		string firstN = firstNames [Mathf.RoundToInt (Random.Range (0, 11))];
-		string lastN = lastNames [Mathf.RoundToInt (Random.Range (0 , 11))];
+		string firstN = firstNames [Mathf.RoundToInt (Random.Range (0, 16))];
+		string lastN = lastNames [Mathf.RoundToInt (Random.Range (0 , 16))];
 		string n = firstN + " " + lastN;
 		Debug.Log (n);
 		return n;
