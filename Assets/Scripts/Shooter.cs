@@ -50,8 +50,8 @@ public class Shooter : MonoBehaviour {
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		bas = FindObjectOfType<Base> ();
 		resourceCapacity = 3;
-		gatherSpeed = 1;
-		moveSpeed = 0.5f;
+		gatherSpeed = 3;
+		moveSpeed = 1.0f;
 		shootTime = 1;
 		Invoke ("setName", 2);
 		setLight ();

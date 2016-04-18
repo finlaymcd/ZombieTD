@@ -40,7 +40,7 @@ public class ScoutMenu : MonoBehaviour {
 			yPos -= 150;
 		}
 		if(scoutCount >= 4){
-		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y + 150);
+		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y + 180);
 		}
 		recta.anchoredPosition = new Vector2 (0, yPos);
 		UI.setName (s.getName(), s);

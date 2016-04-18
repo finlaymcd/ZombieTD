@@ -7,7 +7,6 @@ public class Zombie : MonoBehaviour {
 	private int health;
 	private int damage;
 	private float attackRate; //seconds between each attack
-	private BoxCollider body; //detects projectile hits
 	public Transform targetTransform; //transform of current target
 	public Building[] buildings; //array of all Building classes and subclasses in the scene
 	public Shooter [] shooters;
@@ -22,7 +21,6 @@ public class Zombie : MonoBehaviour {
 		attackRate = 3;
 		damage = 1;
 		health = 3;
-		body = gameObject.GetComponent<BoxCollider> ();
 		buildings = FindObjectsOfType (typeof(Building)) as Building[]; //finds all objects of class Building and puts them in an array called buildings
 		shooters = FindObjectsOfType(typeof(Shooter)) as Shooter[];
 		//targetTransform = GameObject.Find ("WatchTower").transform;

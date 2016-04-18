@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ScoutManager : MonoBehaviour {
 
 	private List<Shooter> scouts = new List<Shooter>();
+	public GameManager gameMan;
 	public ScoutMenu scoutUI;
 	private float time;
 
@@ -71,6 +72,12 @@ public class ScoutManager : MonoBehaviour {
 		int survivorsFound = 0;
 		float survivorChance = Random.Range (50, 500);
 		survivorsFound = Mathf.RoundToInt (timeOut/survivorChance);
+
+		gameMan.addWood (woodFound);
+		gameMan.addMetal (metalFound);
+		for (int i = 0; i < survivorsFound; i++) {
+			gameMan.createShooter ();
+		}
 
 		Debug.Log ("wood: " + woodFound);
 		Debug.Log ("metal: " + metalFound);

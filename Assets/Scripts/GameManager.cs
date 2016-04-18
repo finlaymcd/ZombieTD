@@ -7,21 +7,25 @@ public class GameManager : MonoBehaviour {
 
 
 	private int wood;
+	private int metal;
 	private int survivors;
 	public Text woodText;
+	public Text metalText;
 	public Spawner[] spawners;
 	public Spawner north;
 	public Spawner south;
 	public Spawner east;
 	public Spawner west;
-	public List<Shooter> scouts = new List<Shooter> ();
-	public Transform newShooter;
+	private Shooter currentInstantiation;
+	public GameObject newShooter;
 	public List<string> firstNames = new List<string> ();
 	public List<string> lastNames = new List<string> ();
 
 	void Start(){
 		spawners = FindObjectsOfType (typeof(Spawner)) as Spawner[];
-		wood = 5;
+		wood = 0;
+		metal = 0;
+		setMetalText ();
 		setWoodText ();
 		firstNames.Add ("Brent");
 		firstNames.Add ("Gary");
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour {
 		firstNames.Add ("Boris");
 		firstNames.Add ("John");
 		firstNames.Add ("Rob");
+		firstNames.Add ("Haywood");
+		firstNames.Add ("Ben");
 		lastNames.Add ("Kemp");
 		lastNames.Add ("Hopen");
 		lastNames.Add ("McDonald");
@@ -57,6 +63,8 @@ public class GameManager : MonoBehaviour {
 		lastNames.Add ("Snow");
 		lastNames.Add ("McLellan");
 		lastNames.Add ("McGregor");
+		lastNames.Add ("Jablome");
+		lastNames.Add ("Dover");
 
 	}
 
@@ -65,9 +73,18 @@ public class GameManager : MonoBehaviour {
 		return wood;
 	}
 
+	public int gotMetal(){
+		return metal;
+	}
+
 	public void addWood(int w){
 		wood += w;
 		setWoodText();
+	}
+
+	public void addMetal(int m){
+		metal += m;
+		setMetalText();
 	}
 
 	public void removeWood(int w){
@@ -77,18 +94,23 @@ public class GameManager : MonoBehaviour {
 		setWoodText();
 	}
 
+	public void removeMetal (int m){
+		metal -= m;
+		setMetalText ();
+	}
+
 	public void setWoodText(){
 		woodText.text = "wood: " + wood;
 	}
 
-	public void sendScout(Shooter s){
-		//scouts.Add (s);
-		//s.gameObject.SetActive (false);
-	
+	public void setMetalText(){
+		metalText.text = "metal: " + metal;
 	}
+		
 
 	public void createShooter(){
-		Instantiate (newShooter, new Vector3 (0, 0, 0), Quaternion.identity);
+		GameObject newShoot = Instantiate (newShooter, new Vector3 (0, 11, 0), Quaternion.identity) as GameObject;
+		currentInstantiation = newShoot.GetComponent<Shooter> ();
 	}
 
 	public void expandPlayArea(float expansion, Spawner s){
@@ -126,8 +148,8 @@ public class GameManager : MonoBehaviour {
 
 	}
 	public string generateName(){
-		string firstN = firstNames [Mathf.RoundToInt (Random.Range (0, 16))];
-		string lastN = lastNames [Mathf.RoundToInt (Random.Range (0 , 16))];
+		string firstN = firstNames [Mathf.RoundToInt (Random.Range (0, 18))];
+		string lastN = lastNames [Mathf.RoundToInt (Random.Range (0 , 18))];
 		string n = firstN + " " + lastN;
 		Debug.Log (n);
 		return n;
