@@ -20,8 +20,8 @@ public class Resource : MonoBehaviour {
 
 
 	void Start(){
-		currentGapLeft = 1.5f;
-		currentGapRight = 1.5f;
+		currentGapLeft = 1.0f;
+		currentGapRight = 1.0f;
 	}
 
 	void Update(){
@@ -86,9 +86,10 @@ public class Resource : MonoBehaviour {
 				if(onX == false){
 					Vector3 rot = new Vector3 (treeTile.transform.rotation.x, 90, treeTile.transform.rotation.z);
 					tile.transform.eulerAngles = rot;
-					tile.transform.SetParent (this.gameObject.transform);
-					tile.transform.parent = this.gameObject.transform;
 				}
+				tile.transform.SetParent (this.gameObject.transform, true);
+
+
 				currentGapLeft = 0;
 				setLeftTileSpawnHorizontal ();
 			}
@@ -100,8 +101,10 @@ public class Resource : MonoBehaviour {
 				if(onX == false){
 					Vector3 rot = new Vector3 (treeTile.transform.rotation.x, 90, treeTile.transform.rotation.z);
 					tile.transform.eulerAngles = rot;
-					tile.transform.SetParent (this.gameObject.transform);
 				}
+				tile.transform.SetParent (this.gameObject.transform, true);
+
+
 				currentGapRight = 0;
 				setRightTileSpawnHorizontal ();
 
@@ -130,14 +133,14 @@ public class Resource : MonoBehaviour {
 		} else {
 			if(position == "e"){
 				Debug.Log ("set");
-				Vector3 hold = new Vector3 (rightSpawn.x  - 0.1f, rightSpawn.y, rightSpawn.z);
+				Vector3 hold = new Vector3 (rightSpawn.x  + 0.1f, rightSpawn.y, rightSpawn.z);
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x  + 0.1f, leftSpawn.y, leftSpawn.z);
 				leftSpawn = hold;
 			}
 			if(position == "w"){
 				Debug.Log ("set");
-				Vector3 hold = new Vector3 (rightSpawn.x  + 0.1f, rightSpawn.y, rightSpawn.z);
+				Vector3 hold = new Vector3 (rightSpawn.x  - 0.1f, rightSpawn.y, rightSpawn.z);
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x  - 0.1f, leftSpawn.y, leftSpawn.z);
 				leftSpawn = hold;
