@@ -8,12 +8,13 @@ public class Selector : MonoBehaviour {
 	public RaycastHit hit;
 	private float clickTime;
 	private bool selecting;
-
+	private bool panning;
 
 	// Use this for initialization
 	void Start () {
 		clickTime = 0;
 		selecting = true;
+		panning = false;
 	}
 	
 	// Update is called once per frame
