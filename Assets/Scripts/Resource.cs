@@ -120,14 +120,14 @@ public class Resource : MonoBehaviour {
 		Debug.Log ("called");
 		if (onX) { //The right spawn and left spawn values are made public and set in editor. They are then tweaked as the game goes on through the code.
 			if (position == "s") {
-				Debug.Log ("set");
+				
 				Vector3 hold = new Vector3 (rightSpawn.x, rightSpawn.y, rightSpawn.z - 0.1f); //o.1, becuase that is how much it is pushed back
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x, leftSpawn.y, leftSpawn.z - 0.1f);
 				leftSpawn = hold;
 			}
 			if (position == "n") {
-				Debug.Log ("set");
+
 				Vector3 hold = new Vector3 (rightSpawn.x, rightSpawn.y, rightSpawn.z + 0.1f);
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x, leftSpawn.y, leftSpawn.z + 0.1f);
@@ -135,14 +135,14 @@ public class Resource : MonoBehaviour {
 			}
 		} else {
 			if(position == "e"){
-				Debug.Log ("set");
+	
 				Vector3 hold = new Vector3 (rightSpawn.x  + 0.1f, rightSpawn.y, rightSpawn.z);
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x  + 0.1f, leftSpawn.y, leftSpawn.z);
 				leftSpawn = hold;
 			}
 			if(position == "w"){
-				Debug.Log ("set");
+
 				Vector3 hold = new Vector3 (rightSpawn.x  - 0.1f, rightSpawn.y, rightSpawn.z);
 				rightSpawn = hold;
 				hold = new Vector3 (leftSpawn.x  - 0.1f, leftSpawn.y, leftSpawn.z);

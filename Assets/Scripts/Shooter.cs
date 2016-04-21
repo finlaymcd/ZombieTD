@@ -49,8 +49,8 @@ public class Shooter : MonoBehaviour {
 		shooting = false;
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		bas = FindObjectOfType<Base> ();
-		resourceCapacity = 10;
-		gatherSpeed = 10;
+		resourceCapacity = 3;
+		gatherSpeed = 1;
 		moveSpeed = 1.0f;
 		shootTime = 1;
 		Invoke ("setName", 2);
@@ -111,7 +111,7 @@ public class Shooter : MonoBehaviour {
 
 		}
 
-		if (t >= shootTime) { //if a few seconds have passed
+		if (t >= shootTime && scouting == false) { //if a few seconds have passed
 			shoot ();
 		}
 
@@ -249,10 +249,11 @@ public class Shooter : MonoBehaviour {
 		if (Vector3.Distance (transform.position, targetResource.transform.position) > 0.2f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
 
-		
-
 			transform.position = Vector3.MoveTowards (transform.position, targetResource.transform.position, step);
-
+			Vector3 relativePos = targetResource.transform.position - transform.position;
+			relativePos.y = 0;
+			Quaternion rotation = Quaternion.LookRotation (relativePos);
+			transform.rotation = rotation;
 		} 
 		else {
 			moving = false;
@@ -269,6 +270,10 @@ public class Shooter : MonoBehaviour {
 		if (Vector3.Distance (transform.position, bas.transform.position) > 0.5f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 			float step = moveSpeed * Time.deltaTime; //move towards the closest buidling
 			transform.position = Vector3.MoveTowards (transform.position, bas.transform.position, step);
+			Vector3 relativePos = bas.transform.position - transform.position;
+			relativePos.y = 0;
+			Quaternion rotation = Quaternion.LookRotation (relativePos);
+			transform.rotation = rotation;
 		} else {
 			man.addWood (resourceHeld);
 			resourceHeld = 0;
