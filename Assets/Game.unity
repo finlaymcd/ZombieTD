@@ -2949,6 +2949,7 @@ MonoBehaviour:
   rightSpawn: {x: 6.25, y: 10.43, z: 5.06}
   treeTile: {fileID: 174080, guid: 04c99be351fac80489f1aca5a6a66728, type: 2}
   onX: 0
+  selector: {fileID: 1753335059}
 --- !u!4 &1091733194
 Transform:
   m_ObjectHideFlags: 0
@@ -4158,6 +4159,7 @@ MonoBehaviour:
   rightSpawn: {x: -4.77, y: 10.43, z: -6.61}
   treeTile: {fileID: 174080, guid: 04c99be351fac80489f1aca5a6a66728, type: 2}
   onX: 0
+  selector: {fileID: 1753335059}
 --- !u!4 &1585834855
 Transform:
   m_ObjectHideFlags: 0
@@ -4395,6 +4397,7 @@ MonoBehaviour:
   rightSpawn: {x: 6.96, y: 10.42999, z: -4.723}
   treeTile: {fileID: 174080, guid: 04c99be351fac80489f1aca5a6a66728, type: 2}
   onX: 1
+  selector: {fileID: 1753335059}
 --- !u!4 &1717685115
 Transform:
   m_ObjectHideFlags: 0
@@ -4504,10 +4507,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 2061803230}
-  northLimit: 0
-  southLimit: 0
-  eastLimit: 0
-  westLimit: 0
+  yTopLimit: 1.5
+  yBottomLimit: -1
+  xTopLimit: 1
+  xBottomLimit: -1
 --- !u!4 &1753335060
 Transform:
   m_ObjectHideFlags: 0
@@ -4830,7 +4833,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1867165390}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CamHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5409,6 +5412,7 @@ MonoBehaviour:
   rightSpawn: {x: -5.25, y: 10.42999, z: 6.279999}
   treeTile: {fileID: 174080, guid: 04c99be351fac80489f1aca5a6a66728, type: 2}
   onX: 1
+  selector: {fileID: 1753335059}
 --- !u!4 &2085593037
 Transform:
   m_ObjectHideFlags: 0

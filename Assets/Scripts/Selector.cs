@@ -11,10 +11,10 @@ public class Selector : MonoBehaviour {
 	private bool panning;
 	private Vector3 touchDownPos;
 	public Camera cam;
-	public float northLimit;
-	public float southLimit;
-	public float eastLimit;
-	public float westLimit;
+	public float yTopLimit;
+	public float yBottomLimit;
+	public float xTopLimit;
+	public float xBottomLimit;
 	private float mouseSensitivity;
 
 	// Use this for initialization
@@ -56,7 +56,18 @@ public class Selector : MonoBehaviour {
 			Vector3 dragDelta = (Input.mousePosition - touchDownPos);
 			cam.gameObject.transform.Translate (dragDelta.x * mouseSensitivity * -1,dragDelta.y * mouseSensitivity * -1, 0);
 			touchDownPos = Input.mousePosition;
-			Debug.Log (cam.gameObject.transform.localPosition);
+			if(cam.gameObject.transform.localPosition.x > xTopLimit){
+				cam.gameObject.transform.localPosition = new Vector3 (xTopLimit, cam.gameObject.transform.localPosition.y, cam.gameObject.transform.localPosition.z);
+			}
+			if(cam.gameObject.transform.localPosition.x < xBottomLimit){
+				cam.gameObject.transform.localPosition = new Vector3 (xBottomLimit, cam.gameObject.transform.localPosition.y, cam.gameObject.transform.localPosition.z);
+			}
+			if(cam.gameObject.transform.localPosition.y > yTopLimit){
+				cam.gameObject.transform.localPosition = new Vector3 (cam.gameObject.transform.localPosition.x, yTopLimit, cam.gameObject.transform.localPosition.z);
+			}
+			if(cam.gameObject.transform.localPosition.y < yBottomLimit){
+				cam.gameObject.transform.localPosition = new Vector3 (cam.gameObject.transform.localPosition.x, yBottomLimit, cam.gameObject.transform.localPosition.z);
+			}
 		}
 
 
@@ -125,6 +136,29 @@ public class Selector : MonoBehaviour {
 	}
 
 
+	public void increaseCameraBounds(string pos){
+		if(pos == "n"){
+			yTopLimit += 0.05f;
+			xTopLimit += 0.05f;
+		}
+		if(pos == "s"){
+			yBottomLimit -= 0.05f;
+			xBottomLimit -= 0.05f;
+		}
+		if(pos == "e"){
+			yBottomLimit -= 0.05f;
+			xTopLimit += 0.05f;
+		}
+		if(pos == "w"){
+			yTopLimit += 0.05f;
+			xBottomLimit -= 0.05f;
+		}
+	}
+
+
+
+
+
 }
 
 
@@ -133,46 +167,4 @@ public class Selector : MonoBehaviour {
 
 
 
-
-
-
-				/**
-
-			if (dragObject != null) {
-				dragObject.transform.position = castPos;
-			}
-		}
-		if ((clickTime > 0.05)) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit)) {
-				castPos = new Vector3 (hit.point.x, 11.0f, hit.point.z);
-				if (hit.collider.gameObject.GetComponent<PositionalRounding> () != null) {
-					if(hit.collider.gameObject.GetComponent<Building>().canEdit){
-				
-						dragObject = hit.collider.gameObject;
-					}
-				}
-
-				else if (hit.collider.gameObject.GetComponent<Shooter> () != null) {
-					dragObject = hit.collider.gameObject;
-				}
-			}
-	}
-		if(Input.GetMouseButtonUp(0)){
-			clickTime = 0;
-			if(dragObject != null && dragObject.GetComponent<PositionalRounding> () != null){
-				PositionalRounding d = dragObject.GetComponent<PositionalRounding>();
-				d.rePosition ();
-			}
-			if (dragObject.GetComponent<Shooter> () != null) {
-				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				if (Physics.Raycast (ray, out hit)) {
-					if (hit.collider.gameObject.GetComponent<Building> ()) {
-						Building b = hit.collider.gameObject.GetComponent<Building> ();
-						b.addOccupant (dragObject.GetComponent<Shooter>());
-					}
-				}
-			}
-			dragObject = null;
-			**/
 

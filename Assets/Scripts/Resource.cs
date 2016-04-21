@@ -17,6 +17,7 @@ public class Resource : MonoBehaviour {
 	public Vector3 rightSpawn; //the position to spawn the tile on the right
 	public GameObject treeTile; //spawned prefab
 	public bool onX; //on the x axis or z axis
+	public Selector selector;
 
 
 	void Start(){
@@ -26,7 +27,7 @@ public class Resource : MonoBehaviour {
 
 	void Update(){
 		if(position == "s"){
-			Debug.Log (rightSpawn);
+
 		}
 	}
 
@@ -40,6 +41,7 @@ public class Resource : MonoBehaviour {
 		s.addResource (a); //give it back to the shooter
 		//return b;
 		if(amountContained == 0){ //if the resource is empty, it takes a step back and refills
+			selector.increaseCameraBounds(position);
 			if(gameObject != null){
 				Vector3 currentPos = gameObject.transform.position;
 				if(position == "n"){
