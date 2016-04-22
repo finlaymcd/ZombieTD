@@ -377,7 +377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -5.06
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Pivot.y

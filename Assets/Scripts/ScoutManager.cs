@@ -41,7 +41,8 @@ public class ScoutManager : MonoBehaviour {
 		foreach(Shooter shoot in scouts){
 			if(shoot == s){
 				s.returnFromScout ();
-				scoutUI.removeScoutUI ();
+				scoutUI.removeScoutUI (item);
+
 				MeshRenderer[] visible = s.gameObject.GetComponentsInChildren<MeshRenderer> ();
 				foreach(MeshRenderer m in visible){
 					m.enabled = true;

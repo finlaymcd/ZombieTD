@@ -66,8 +66,11 @@ public class Zombie : MonoBehaviour {
 			b.loseHealth (damage); //cause that building to lose health
 		}
 		if(currentTarget.GetComponent<Shooter>() != null){ //if it has a target
+
 			Shooter s = currentTarget.GetComponent<Shooter> (); //save building as variable
+			if(s.returnScoutStatus() == false){
 			s.removeHealth (damage); //cause that building to lose health
+			}
 		}
 	}
 

@@ -33,16 +33,11 @@ public class ScoutMenu : MonoBehaviour {
 		Transform ui = (Instantiate (scoutUI, new Vector3 (0, 0, 0), Quaternion.identity) as Transform);
 		ui.parent = GameObject.Find ("ScoutScroll").transform;
 		ScoutUIItem UI = ui.gameObject.GetComponentInChildren<ScoutUIItem> ();
-
-		RectTransform recta = UI.gameObject.GetComponent<RectTransform> ();
-		float yPos = -50;
-		for(int i = 0; i < scoutCount; i++){
-			yPos -= 150;
-		}
-		if(scoutCount >= 4){
+		scouts.Add (UI);
+		if(scoutCount >= 3){
 		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y + 180);
 		}
-		recta.anchoredPosition = new Vector2 (0, yPos);
+		reorderScoutUI ();
 		UI.setName (s.getName(), s);
 		if(menuOpen == false){
 			Image[] scoutUIimage = ui.gameObject.GetComponentsInChildren<Image>();
@@ -57,13 +52,23 @@ public class ScoutMenu : MonoBehaviour {
 		scoutCount++;
 	}
 
-	public void removeScoutUI(){
-		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y - 180);
-		foreach(ScoutUIItem s in scouts){
-			RectTransform rect = s.gameObject.GetComponent<RectTransform> ();
-			rect.anchoredPosition = new Vector2 (rect.anchoredPosition.x, rect.anchoredPosition.y + 180);
-
+	public void reorderScoutUI(){
+		for (int i = 0; i < scouts.Count; i++){
+			RectTransform recta = scouts [i].GetComponent<RectTransform> ();
+			float yPos = ((i) * -180) - 30;
+		
+			recta.anchoredPosition = new Vector2 (0, yPos);
 		}
+	}
+
+	public void removeScoutUI(ScoutUIItem scout){
+		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y - 180);
+		for(int i = 0; i < scouts.Count; i++){
+			if(scouts[i] == scout){
+				scouts.Remove (scout);
+			}
+		}
+		reorderScoutUI ();
 	}
 
 	public void closeScoutMenu(){
