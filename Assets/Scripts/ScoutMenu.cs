@@ -58,7 +58,11 @@ public class ScoutMenu : MonoBehaviour {
 	}
 
 	public void removeScoutUI(){
+		scroller.sizeDelta = new Vector2(scroller.sizeDelta.x, scroller.sizeDelta.y - 180);
+		foreach(ScoutUIItem s in scouts){
+			//move them up 180
 
+		}
 	}
 
 	public void closeScoutMenu(){

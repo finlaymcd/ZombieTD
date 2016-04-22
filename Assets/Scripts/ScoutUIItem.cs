@@ -15,6 +15,7 @@ public class ScoutUIItem : MonoBehaviour {
 	private bool returning;
 	private float returnTime;
 
+
 	// Use this for initialization
 	void Start () {
 		returning = false;
@@ -45,6 +46,7 @@ public class ScoutUIItem : MonoBehaviour {
 		returning = true;
 		buttonText.text = "Scout Returning";
 		butt.interactable = false;
+
 	}
 
 	public void setStartTime(float s){
