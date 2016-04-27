@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418858}
   - 114: {fileID: 11495402}
+  - 114: {fileID: 11412040}
   m_Layer: 0
   m_Name: tileableWall
   m_TagString: Untagged
@@ -92,6 +93,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150074}
   m_Mesh: {fileID: 4300000, guid: 29289937eadc9fd459fe276c23c715c4, type: 3}
+--- !u!114 &11412040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ebfb7bac741b249acd031201a26ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 0
+  capacity: 0
+  numberResidents: 0
+  canEdit: 0
+  woodCost: 0
+  shooters: []
+  height: 0
+  metalCost: 0
 --- !u!114 &11495402
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,17 +18,8 @@ public class Building : MonoBehaviour {
 	public int woodCost;
 	public List<Shooter> shooters;
 	public float height;
+	public int metalCost;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void addOccupant(Shooter s){ //add a person in to the building
 		if(numberResidents < capacity && canEdit == false){

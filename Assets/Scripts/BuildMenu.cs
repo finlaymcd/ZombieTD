@@ -21,11 +21,12 @@ public class BuildMenu : MonoBehaviour {
 
 	public void build(Building b){
 		phresh = Instantiate (b);
-		if (phresh.woodCost > man.gotWood()) {
+		if (phresh.woodCost > man.gotWood() || phresh.metalCost > man.gotMetal()) {
 			Destroy (phresh.gameObject);
 		} else {
 			phresh.GetComponent<PositionalRounding> ().rePosition ();
 			man.removeWood (phresh.woodCost);
+			man.removeMetal (phresh.metalCost);
 			closeMenu ();
 
 		}
