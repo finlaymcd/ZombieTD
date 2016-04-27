@@ -72,7 +72,7 @@ public class ScoutManager : MonoBehaviour {
 		metalFound = Mathf.RoundToInt (timeOut/metalChance);
 
 		int survivorsFound = 0;
-		float survivorChance = Random.Range (50, 500);
+		float survivorChance = Random.Range (100, 1000);
 		survivorsFound = Mathf.RoundToInt (timeOut/survivorChance);
 
 		gameMan.addWood (woodFound);

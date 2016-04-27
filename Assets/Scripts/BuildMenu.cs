@@ -53,6 +53,15 @@ public class BuildMenu : MonoBehaviour {
 					b.interactable = true;
 				}
 			}
+
+			if(s == "Wall"){
+				if (man.gotMetal () < 5) {
+					b.interactable = false;
+				} 
+				else {
+					b.interactable = true;
+				}
+			}
 		}
 	}
 
