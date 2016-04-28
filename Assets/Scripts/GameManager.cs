@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start(){
 		spawners = FindObjectsOfType (typeof(Spawner)) as Spawner[];
-		wood = 0;
+		wood = 40;
 		metal = 0;
 		setMetalText ();
 		setWoodText ();

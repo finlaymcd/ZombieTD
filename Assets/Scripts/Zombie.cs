@@ -141,7 +141,7 @@ public class Zombie : MonoBehaviour {
 	}
 
 	public void outSight(){
-		model.SetActive (false);
+		//model.SetActive (false);
 
 	}
 }
