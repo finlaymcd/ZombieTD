@@ -56,8 +56,6 @@ public class Shooter : MonoBehaviour {
 		shootTime = 1;
 		Invoke ("setName", 2);
 		setLight ();
-
-
 	}
 	
 	// Update is called once per frame
