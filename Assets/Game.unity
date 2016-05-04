@@ -2464,7 +2464,7 @@ RectTransform:
   - {fileID: 1128479582}
   - {fileID: 951566089}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2549,7 +2549,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 938954984}
   m_Enabled: 1
   m_Radius: 0.36
-  m_Speed: 1.65
+  m_Speed: 1
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2560,7 +2560,7 @@ NavMeshAgent:
   m_Height: 0.8
   m_BaseOffset: 0.65
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &938954990
 MonoBehaviour:
   m_ObjectHideFlags: 0

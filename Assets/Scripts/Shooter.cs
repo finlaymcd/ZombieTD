@@ -41,6 +41,8 @@ public class Shooter : MonoBehaviour {
 	public ScoutManager scoutMan;
 	private bool scouting;
 	public PathFinding pathfinder;
+	private Vector3 oldPos;
+
 
 	void Start () {
 		pathfinder = gameObject.GetComponent<PathFinding> ();
@@ -88,6 +90,15 @@ public class Shooter : MonoBehaviour {
 		if(movingFromResource){
 			pathfinder.deactivatePathfinding ();
 			backToBase ();
+		}
+
+		if(t > 0.5f && inBuilding == false){
+			float dist = Vector3.Distance (this.gameObject.transform.localPosition, oldPos);
+			if (dist < 0.0000000001f) {
+				milling = false;
+				millAbout ();
+			}
+			oldPos = this.gameObject.transform.localPosition;
 		}
 
 		if(target == null){
@@ -198,6 +209,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void interrupt(){
+		pathfinder.deactivatePathfinding ();
 		gathering = false;
 		movingFromResource = false;
 		movingToResource = false;
@@ -310,11 +322,10 @@ public class Shooter : MonoBehaviour {
 			
 		}
 		else{
-			Debug.Log ("milling");
+
 			float step = moveSpeed * Time.deltaTime;
 			//transform.position = Vector3.MoveTowards(transform.position, newPos, step);
 			pathfinder.setDestination(newPos);
-			Debug.Log (Vector3.Distance(transform.position, newPos));
 			if(Vector3.Distance(transform.position, newPos) < 0.15F){
 				milling = false;
 			}

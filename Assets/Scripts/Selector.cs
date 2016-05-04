@@ -113,6 +113,7 @@ public class Selector : MonoBehaviour {
 
 			if (dragObject.GetComponent<Shooter> () != null) {
 				Shooter shooter = dragObject.GetComponent<Shooter> ();
+
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				if (Physics.Raycast (ray, out hit)) {
 					if (hit.collider.gameObject.GetComponent<Building> ()) {
