@@ -24,11 +24,10 @@ public class Building : MonoBehaviour {
 	public void addOccupant(Shooter s){ //add a person in to the building
 		if(numberResidents < capacity && canEdit == false){
 			shooters.Add (s);
-
+            s.pathfinder.deactivatePathfinding();
 			s.gameObject.transform.position = new Vector3 (transform.position.x, height, transform.position.z);
 			s.transform.parent = gameObject.transform;
 			s.sightRange = s.sightRange * 2;
-
 			s.occupiedBuilding = this;
 			s.inBuilding = true;
 			numberResidents++;
@@ -41,8 +40,8 @@ public class Building : MonoBehaviour {
 		numberResidents--;
 		foreach (Shooter shoot in shooters) {
 			if (shoot == s) {
-				
-				s.transform.parent = null;
+                s.pathfinder.activatePathFinding();
+                s.transform.parent = null;
 				s.occupiedBuilding = null;
 				s.inBuilding = false;
 				shooters.Remove (shoot);

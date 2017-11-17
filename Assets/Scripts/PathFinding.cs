@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PathFinding : MonoBehaviour {
 
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 
 	// Use this for initialization
 	void Start () {
-		agent = GetComponent<NavMeshAgent>();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 	}
 	
 

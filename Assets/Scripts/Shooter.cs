@@ -42,6 +42,8 @@ public class Shooter : MonoBehaviour {
 	private bool scouting;
 	public PathFinding pathfinder;
 
+
+
 	void Start () {
 		pathfinder = gameObject.GetComponent<PathFinding> ();
 		scouting = false;
@@ -56,12 +58,13 @@ public class Shooter : MonoBehaviour {
 		shootTime = 1;
 		Invoke ("setName", 2);
 		setLight ();
-
+	
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		scanForZombies ();
 		actualPos = gameObject.GetComponentInChildren<MeshRenderer> ().transform;
 		if (milling) {
@@ -124,7 +127,7 @@ public class Shooter : MonoBehaviour {
 
 
 		t += Time.deltaTime; //increment time
-
+	
 	}
 
 	public string getName(){
@@ -247,7 +250,7 @@ public class Shooter : MonoBehaviour {
 
 		if (moving == false) {
 			transform.position = startPos;
-			}
+		}
 
 		moving = true;
 
@@ -308,15 +311,12 @@ public class Shooter : MonoBehaviour {
 			zPos = Random.Range(-4.0f, 4.0f);
 			newPos = new Vector3(xPos, 11, zPos);
 			milling = true;
-			Debug.Log (newPos);
+
 			
 		}
 		else{
-			Debug.Log ("milling");
-			float step = moveSpeed * Time.deltaTime;
-			//transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+			
 			pathfinder.setDestination(newPos);
-			Debug.Log (Vector3.Distance(transform.position, newPos));
 			if(Vector3.Distance(transform.position, newPos) < 0.15F){
 				milling = false;
 			}
@@ -341,7 +341,7 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public void resetLight(){
-		sight.transform.localPosition = new Vector3 (this.gameObject.transform.localPosition.x, -0.54f, this.gameObject.transform.position.z);
+		sight.transform.localPosition = new Vector3 (0.2514708f, -0.54f, -0.02916157f);
 	}
 
 }
