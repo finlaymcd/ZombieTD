@@ -14,9 +14,11 @@ public class Zombie : MonoBehaviour {
 	public Vector3 currentPos; //currentPosition
 	private float t; //variable that stores time.
 	public GameObject model;
+	private PathFinding pathfinder;
 
 	// Use this for initialization
 	void Start () {
+		pathfinder = gameObject.GetComponent<PathFinding> ();
 		t = 0;
 		attackRate = 3;
 		damage = 1;
@@ -43,13 +45,15 @@ public class Zombie : MonoBehaviour {
 		
 	public void move(){
 		if (targetTransform != null) {
-			if (Vector3.Distance (currentPos, targetTransform.position) > 0.2f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
-				float step = speed * Time.deltaTime; //move towards the closest buidling
+			if (Vector3.Distance (currentPos, targetTransform.position) > 0.4f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+				//float step = speed * Time.deltaTime; //move towards the closest buidling
 				Vector3 go = new Vector3(targetTransform.position.x, 11, targetTransform.position.z);
-				transform.position = Vector3.MoveTowards (transform.position, go, step); //apply movement
+				//transform.position = Vector3.MoveTowards (transform.position, go, step); //apply movement
+				pathfinder.setDestination(go);
 				Vector3 relativePos = targetTransform.position - gameObject.transform.position;
 				Quaternion rotation = Quaternion.LookRotation (relativePos);
 				gameObject.transform.rotation = rotation;
+
 			} else {
 				if (t > attackRate) {
 					attack ();
