@@ -41,6 +41,7 @@ public class Shooter : MonoBehaviour {
 	public ScoutManager scoutMan;
 	private bool scouting;
 	public PathFinding pathfinder;
+    public float AttackDistanceThreshold = 0.5f;
 
 
 

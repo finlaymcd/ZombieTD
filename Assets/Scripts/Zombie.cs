@@ -4,8 +4,8 @@ using System.Collections;
 public class Zombie : MonoBehaviour {
 
 	public float speed;
-	private int health;
-	private int damage;
+	public int health;
+	public int damage;
 	private float attackRate; //seconds between each attack
 	public Transform targetTransform; //transform of current target
 	public Building[] buildings; //array of all Building classes and subclasses in the scene
@@ -15,6 +15,7 @@ public class Zombie : MonoBehaviour {
 	private float t; //variable that stores time.
 	public GameObject model;
 	private PathFinding pathfinder;
+    private float currentDistanceAttackThreshold = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -45,14 +46,17 @@ public class Zombie : MonoBehaviour {
 		
 	public void move(){
 		if (targetTransform != null) {
-			if (Vector3.Distance (currentPos, targetTransform.position) > 0.4f) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
+			if (Vector3.Distance (currentPos, targetTransform.position) > currentDistanceAttackThreshold) { //checks how close the building is. If it's too close, it won't move, and starts attacking it instead (see else)
 				//float step = speed * Time.deltaTime; //move towards the closest buidling
 				Vector3 go = new Vector3(targetTransform.position.x, 11, targetTransform.position.z);
 				//transform.position = Vector3.MoveTowards (transform.position, go, step); //apply movement
 				pathfinder.setDestination(go);
 				Vector3 relativePos = targetTransform.position - gameObject.transform.position;
 				Quaternion rotation = Quaternion.LookRotation (relativePos);
-				gameObject.transform.rotation = rotation;
+                Vector3 eulerRot = rotation.eulerAngles;
+                eulerRot = new Vector3(0.0f, eulerRot.y, 0.0f);
+                rotation = Quaternion.Euler(eulerRot);
+                gameObject.transform.rotation = rotation;
 
 			} else {
 				if (t > attackRate) {
@@ -65,6 +69,7 @@ public class Zombie : MonoBehaviour {
 	}
 
 	public void attack(){
+        Debug.Log("attack");
 		if(currentTarget.GetComponent<Building>() != null){ //if it has a target
 			Building b = currentTarget.GetComponent<Building> (); //save building as variable
 			b.loseHealth (damage); //cause that building to lose health
@@ -94,6 +99,7 @@ public class Zombie : MonoBehaviour {
 					minDistance = dist; //if it's closer than the current mindistance, it becomes the new mindistance and the new target
 					targetTransform = t;
 					currentTarget = b.gameObject;
+                    currentDistanceAttackThreshold = b.attackDistanceThreshold;
 				}
 			}
 		}
@@ -107,7 +113,8 @@ public class Zombie : MonoBehaviour {
 					minDistance = dist; //if it's closer than the current mindistance, it becomes the new mindistance and the new target
 					targetTransform = t;
 					currentTarget = s.gameObject;
-				}
+                    currentDistanceAttackThreshold = s.AttackDistanceThreshold;
+                }
 			}
 		}
 	}

@@ -18,6 +18,7 @@ public class Building : MonoBehaviour {
 	public int woodCost;
 	public List<Shooter> shooters;
 	public float height;
+    public float attackDistanceThreshold = 1.0f;
 	public int metalCost;
 
 
